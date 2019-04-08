@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-08T01:01:39.224Z</updated>
+  <updated>2019-04-08T01:05:27.888Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/04/08/ssl-pinning/"/>
     <id>http://yoursite.com/2019/04/08/ssl-pinning/</id>
     <published>2019-04-08T00:59:58.000Z</published>
-    <updated>2019-04-08T01:01:39.224Z</updated>
+    <updated>2019-04-08T01:05:27.888Z</updated>
     
     <content type="html"><![CDATA[<p>fdsjfjasdkfas</p>]]></content>
     
@@ -35,8 +35,10 @@
     
     </summary>
     
+      <category term="develop" scheme="http://yoursite.com/categories/develop/"/>
     
-      <category term="develop" scheme="http://yoursite.com/tags/develop/"/>
+    
+      <category term="ssl" scheme="http://yoursite.com/tags/ssl/"/>
     
   </entry>
   
