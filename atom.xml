@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-01T12:11:16.320Z</updated>
+  <updated>2019-04-08T01:14:38.861Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ssl pinning</title>
+    <link href="http://yoursite.com/2019/04/08/ssl-pinning/"/>
+    <id>http://yoursite.com/2019/04/08/ssl-pinning/</id>
+    <published>2019-04-08T00:59:58.000Z</published>
+    <updated>2019-04-08T01:14:38.861Z</updated>
+    
+    <content type="html"><![CDATA[<p>fdsjfjasdkfas</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;fdsjfjasdkfas&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="-develop" scheme="http://yoursite.com/categories/develop/"/>
+    
+    
+      <category term="ssl" scheme="http://yoursite.com/tags/ssl/"/>
+    
+  </entry>
   
   <entry>
     <title>缺舟</title>
