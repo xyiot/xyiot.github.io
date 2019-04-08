@@ -42,7 +42,7 @@
     <link href="http://yoursite.com/2018/01/01/ssl-pinning1/"/>
     <id>http://yoursite.com/2018/01/01/ssl-pinning1/</id>
     <published>2018-01-01T00:59:58.000Z</published>
-    <updated>2019-04-08T12:18:56.386Z</updated>
+    <updated>2019-04-08T12:26:05.924Z</updated>
     
     <content type="html"><![CDATA[<p>11</p><p>1111</p>]]></content>
     
@@ -57,10 +57,12 @@
     
     </summary>
     
-      <category term="开发" scheme="http://yoursite.com/categories/%E5%BC%80%E5%8F%91/"/>
+      <category term="安全" scheme="http://yoursite.com/categories/%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="ssl https 安全" scheme="http://yoursite.com/tags/ssl-https-%E5%AE%89%E5%85%A8/"/>
+      <category term="ssl" scheme="http://yoursite.com/tags/ssl/"/>
+    
+      <category term="https" scheme="http://yoursite.com/tags/https/"/>
     
   </entry>
   
