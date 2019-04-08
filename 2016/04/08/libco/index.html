@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/04/08/libco/illustration-1.png">
 <meta property="og:image" content="http://yoursite.com/2016/04/08/libco/illustration-2.png">
-<meta property="og:updated_time" content="2019-04-08T15:28:44.233Z">
+<meta property="og:updated_time" content="2019-04-08T15:34:19.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="libco">
 <meta name="twitter:description" content="co_create  初始化相关12345int co_create( stCoRoutine_t **ppco,const stCoRoutineAttr_t *attr,pfn_co_routine_t pfn,void *arg )static stCoRoutineEnv_t* g_arrCoEnvPerThread[ 204800 ] = &amp;#123; 0 &amp;#125;;void co_">
@@ -398,7 +398,12 @@
 <li><p>轮询 co_eventloop</p>
 </li>
 </ol>
-<h4 id="感受-总体代码质量并不是特别好，总感觉为了使用C-而使用C-，甚至有些命名都不是-特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。"><a href="#感受-总体代码质量并不是特别好，总感觉为了使用C-而使用C-，甚至有些命名都不是-特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。" class="headerlink" title="感受: 总体代码质量并不是特别好，总感觉为了使用C++而使用C++，甚至有些命名都不是 特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。"></a>感受: 总体代码质量并不是特别好，总感觉为了使用C++而使用C++，甚至有些命名都不是 特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。</h4>
+<h4 id="感受"><a href="#感受" class="headerlink" title="感受:"></a>感受:</h4><blockquote>
+<p>总体代码质量并不是特别好，总感觉为了使用C++而使用C++，甚至有些命名都不是 特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。</p>
+</blockquote>
+<p>libco github ：<a href="https://github.com/Tencent/libco" target="_blank" rel="noopener">地址</a></p>
+<p>云风 github： <a href="https://github.com/cloudwu/coroutine/" target="_blank" rel="noopener">地址</a></p>
+
       
     </div>
     
@@ -430,8 +435,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2011/01/01/ssl-pinning/" rel="next" title="ssl pinning">
-                <i class="fa fa-chevron-left"></i> ssl pinning
+              <a href="/2011/01/01/stun/" rel="next" title="stun流程理解">
+                <i class="fa fa-chevron-left"></i> stun流程理解
               </a>
             
           </div>
@@ -605,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#co-create-初始化相关"><span class="nav-number">1.</span> <span class="nav-text">co_create  初始化相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程执行"><span class="nav-number">2.</span> <span class="nav-text">协程执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞调用Hook"><span class="nav-number">2.0.1.</span> <span class="nav-text">阻塞调用Hook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协程的事件管理"><span class="nav-number">2.0.2.</span> <span class="nav-text">协程的事件管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#感受-总体代码质量并不是特别好，总感觉为了使用C-而使用C-，甚至有些命名都不是-特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。"><span class="nav-number">2.0.3.</span> <span class="nav-text">感受: 总体代码质量并不是特别好，总感觉为了使用C++而使用C++，甚至有些命名都不是 特别规范，最好理解的协程库还是云风c语言版本的，强力推荐，libco最大的优势就是作为微信内部框架的底层库，在线上也承受了巨大的流量，稳定跑到几千台服务器上，其他的都不重要。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#co-create-初始化相关"><span class="nav-number">1.</span> <span class="nav-text">co_create  初始化相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程执行"><span class="nav-number">2.</span> <span class="nav-text">协程执行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阻塞调用Hook"><span class="nav-number">2.0.1.</span> <span class="nav-text">阻塞调用Hook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协程的事件管理"><span class="nav-number">2.0.2.</span> <span class="nav-text">协程的事件管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#感受"><span class="nav-number">2.0.3.</span> <span class="nav-text">感受:</span></a></li></ol></li></ol></div>
             
 
           </div>
