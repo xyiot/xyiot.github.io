@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-08T02:17:01.369Z</updated>
+  <updated>2019-04-01T12:11:16.320Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>ssl pinning</title>
-    <link href="http://yoursite.com/2019/04/08/ssl-pinning1/"/>
-    <id>http://yoursite.com/2019/04/08/ssl-pinning1/</id>
-    <published>2019-04-08T00:59:58.000Z</published>
-    <updated>2019-04-08T02:17:01.369Z</updated>
-    
-    <content type="html"><![CDATA[<p>fdsjfjasdkfas</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;fdsjfjasdkfas&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="ssl" scheme="http://yoursite.com/tags/ssl/"/>
-    
-  </entry>
   
   <entry>
     <title>缺舟</title>
@@ -58,6 +34,32 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>ssl pinning</title>
+    <link href="http://yoursite.com/2018/01/01/ssl-pinning1/"/>
+    <id>http://yoursite.com/2018/01/01/ssl-pinning1/</id>
+    <published>2018-01-01T00:59:58.000Z</published>
+    <updated>2019-04-08T12:17:05.469Z</updated>
+    
+    <content type="html"><![CDATA[<p>fdsjfjasdkfas</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;fdsjfjasdkfas&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="http://yoursite.com/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="ssl https 安全" scheme="http://yoursite.com/tags/ssl-https-%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
