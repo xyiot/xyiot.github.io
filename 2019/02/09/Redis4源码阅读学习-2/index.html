@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/aeEventLoop.png">
-<meta property="og:updated_time" content="2019-04-09T11:22:23.975Z">
+<meta property="og:updated_time" content="2019-04-09T11:30:20.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis4源码阅读学习-2">
 <meta name="twitter:description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
@@ -389,7 +389,8 @@ for (j = 0; j &lt; numevents; j++) {
     int fired = 0; /* Number of events fired for current fd. */
 
     int invert = fe-&gt;mask &amp; AE_BARRIER;
-</code></pre><h2 id="文件事件注册-aeCreateFileEvent"><a href="#文件事件注册-aeCreateFileEvent" class="headerlink" title="文件事件注册  aeCreateFileEvent"></a>文件事件注册  aeCreateFileEvent</h2><h2 id="监听实现"><a href="#监听实现" class="headerlink" title="监听实现"></a>监听实现</h2><p>1.<code>initServer()</code>中完成了对事件循环的初始化操作</p>
+</code></pre><p>​           </p>
+<h2 id="文件事件注册-aeCreateFileEvent"><a href="#文件事件注册-aeCreateFileEvent" class="headerlink" title="文件事件注册  aeCreateFileEvent"></a>文件事件注册  aeCreateFileEvent</h2><h2 id="监听实现"><a href="#监听实现" class="headerlink" title="监听实现"></a>监听实现</h2><p>1.<code>initServer()</code>中完成了对事件循环的初始化操作</p>
 <p>listenToPort</p>
 <p>2.完成了监听套接字的初始化，<code>initServer()</code>还需要为所有监听套接字注册读事件</p>
 <p>acceptTcpHandler/acceptUnixHandler  //回调监听到新连接请求时</p>
@@ -397,7 +398,6 @@ for (j = 0; j &lt; numevents; j++) {
 <p>在与客户端成功建立连接之后，调用了<code>acceptCommonHandler()</code>函数，其作用为：<br> 1、 建立并保存服务器与客户端的连接信息，将信息保存到一个struct redisClient 中；<br> 2、为客户端的cfd（已连接的socket）注册读事件，相应的回调函数为<code>readQueryFromClient()</code>，其作用是从socket读取数据，执行相应操作，并回复给客户端(而acceptCommonHandler是为监听socket的读事件回调函数)</p>
 <h2 id="事件循环aeMain"><a href="#事件循环aeMain" class="headerlink" title="事件循环aeMain"></a>事件循环aeMain</h2><p>1、根据时间事件链表计算需要等待的最短事件；<br>2、调用<code>redis aeApiPoll()</code> 进入监听轮询，如果没有事件发生就进入睡眠状态，其实就是进行I/O多路复用函数调用。<br>3、如果有事件发生，处理事件。</p>
 <h2 id="事件触发"><a href="#事件触发" class="headerlink" title="事件触发"></a>事件触发</h2><p>aeApiPoll //多路复用函数阻塞监听</p>
-<p>##### </p>
 <h5 id="2-时间事件"><a href="#2-时间事件" class="headerlink" title="2.时间事件"></a>2.时间事件</h5><p>在 Redis 中会发生两种时间事件：</p>
 <ul>
 <li>一种是定时事件，每隔一段时间会执行一次；</li>
