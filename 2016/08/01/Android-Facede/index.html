@@ -81,22 +81,22 @@
 
 
 
-<meta name="description" content="#  Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具">
+<meta name="description" content="Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在">
 <meta name="keywords" content="android,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android Facede">
 <meta property="og:url" content="http://yoursite.com/2016/08/01/Android-Facede/index.html">
 <meta property="og:site_name" content="三余无梦生">
-<meta property="og:description" content="#  Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具">
+<meta property="og:description" content="Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/08/01/Android-Facede/Android-Facede/1.png">
 <meta property="og:image" content="http://yoursite.com/2016/08/01/Android-Facede/Android-Facede/2.png">
 <meta property="og:image" content="http://yoursite.com/2016/08/01/Android-Facede/Android-Facede/3.png">
 <meta property="og:image" content="http://yoursite.com/2016/08/01/Android-Facede/Android-Facede/4.png">
-<meta property="og:updated_time" content="2019-04-09T06:10:38.202Z">
+<meta property="og:updated_time" content="2019-04-09T06:19:09.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Facede">
-<meta name="twitter:description" content="#  Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具">
+<meta name="twitter:description" content="Android外观模式的应用这是一个`app`最初的项目结构    所有的页面都放在activities，自定义view放在widget，网络相关的封装在network，所有工具类放在utils，少数的xxxManager单例藏在某个包下面，因为少没必要过度提炼就这样吧…没什么问题，项目上线！   随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在">
 <meta name="twitter:image" content="http://yoursite.com/2016/08/01/Android-Facede/Android-Facede/1.png">
 
 
@@ -281,6 +281,7 @@
         
 
         <div class="post-meta">
+	  
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -354,8 +355,7 @@
       
 
       
-        <p># </p>
-<h1 id="Android外观模式的应用"><a href="#Android外观模式的应用" class="headerlink" title="Android外观模式的应用"></a>Android外观模式的应用</h1><pre><code>这是一个`app`最初的项目结构  
+        <h1 id="Android外观模式的应用"><a href="#Android外观模式的应用" class="headerlink" title="Android外观模式的应用"></a>Android外观模式的应用</h1><pre><code>这是一个`app`最初的项目结构  
 </code></pre><p><img src="Android-Facede/1.png" alt></p>
 <p>所有的页面都放在<code>activities</code>，自定义<code>view</code>放在<code>widget</code>，网络相关的封装在<code>network</code>，所有工具类放在<code>utils</code>，少数的<code>xxxManager</code>单例藏在某个包下面，因为少没必要过度提炼就这样吧…<br>没什么问题，项目上线！  </p>
 <p>随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在<code>activity</code>里面没来得及提炼出来，<code>xxxManager</code>散落一地，<code>callback</code>到处都是…各个包的类都在快速增长</p>
@@ -382,7 +382,7 @@
 <p>很多<code>app</code>都会搞一个类似<code>core</code>，<code>common</code>的<code>module</code>，一股脑儿的扔里面，这玩意儿到后面绝对是一锅东北菜，乱炖的感觉。  </p>
 <p>对于<code>module</code>层级下面的<code>util</code>，只能是高度通用的<code>util</code>才放到下面，命名一定要体现其具体功能，千万不要直接<code>utils</code>，<code>StringUtils</code>等很模糊的命名，推荐<code>Logger</code>，<code>DeviceUtil</code>，<code>UrlUtil</code>等一眼就能看出其具体功能的<code>util</code>。  </p>
 <p>对于<code>resource</code>相关的定义，单独一个<code>module</code><br>这些<code>module</code>都会逐渐沉淀下来，以后<code>app</code>按需依赖.<br><img src="Android-Facede/4.png" alt><br>黑线一下的就是业务线开发的基础，是不是有点类似<code>android.jar</code>的感觉</p>
-<h4 id="UserCase"><a href="#UserCase" class="headerlink" title="UserCase"></a>UserCase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">人之所以聪明，是因为人会创造工具并使用</span><br><span class="line"></span><br><span class="line">重构的基础是人员，如何照顾开发的情绪，如何渐进式的进行重构，如何借助工具进行重构，重构不等于重写，重构不等于业务都给我停下让路</span><br></pre></td></tr></table></figure>
+<h4 id="UserCase"><a href="#UserCase" class="headerlink" title="UserCase"></a>UserCase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">人之所以聪明，是因为人会创造工具并使用</span><br><span class="line"></span><br><span class="line">重构的基础是人员，如何照顾开发的情绪，如何渐进式的进行重构，</span><br><span class="line">如何借助工具进行重构，重构不等于重写，重构不等于业务都给我停下让路</span><br></pre></td></tr></table></figure>
 
       
     </div>
