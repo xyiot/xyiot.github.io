@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c，数据库，缓存，redis,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三余无梦生" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
+<meta name="keywords" content="c，数据库，缓存，redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis4源码阅读学习-2">
+<meta property="og:url" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/index.html">
+<meta property="og:site_name" content="三余无梦生">
+<meta property="og:description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/aeEventLoop.png">
+<meta property="og:updated_time" content="2019-04-09T11:12:48.521Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis4源码阅读学习-2">
+<meta name="twitter:description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/">
+
+
+
+
+
+  <title>redis4源码阅读学习-2 | 三余无梦生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三余无梦生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/09/Redis4源码阅读学习-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三鱼">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三余无梦生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">redis4源码阅读学习-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-09T18:02:37+08:00">
+                2019-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第三方源码库/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方源码库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="redis客户端和服务器的相关代码"><a href="#redis客户端和服务器的相关代码" class="headerlink" title="redis客户端和服务器的相关代码"></a>redis客户端和服务器的相关代码</h1><h2 id="ae-c（Redis-的事件处理器实现（基于-Reactor-模式））"><a href="#ae-c（Redis-的事件处理器实现（基于-Reactor-模式））" class="headerlink" title="ae.c（Redis 的事件处理器实现（基于 Reactor 模式））"></a>ae.c（Redis 的事件处理器实现（基于 Reactor 模式））</h2><p><img src="/2019/02/09/Redis4源码阅读学习-2/1.png" alt></p>
+<p>handle_events()</p>
+<p>在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents</p>
+<p>register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法</p>
+<p>select对应不同平台的io复用的函数库</p>
+<p>handle对应fd资源，文件描述符</p>
+<p>event handler  事件处理器的接口</p>
+<p>Concrete Event Handler 事件处理器的实际实现，绑定handle，比如acceptTcpHandler  这些</p>
+<h3 id="相关数据结构"><a href="#相关数据结构" class="headerlink" title="相关数据结构"></a>相关数据结构</h3><h5 id="aeFileEvent"><a href="#aeFileEvent" class="headerlink" title="aeFileEvent"></a>aeFileEvent</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文件事件结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">aeFileEvent</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> mask; <span class="comment">/* one of AE_(READABLE|WRITABLE|BARRIER) */</span></span><br><span class="line">    aeFileProc *rfileProc;  <span class="comment">//读文件事件回调</span></span><br><span class="line">    aeFileProc *wfileProc;  <span class="comment">//写文件事件回调</span></span><br><span class="line">    <span class="keyword">void</span> *clientData; <span class="comment">//指向 redisClient 的指针</span></span><br><span class="line">&#125; aeFileEvent;</span><br></pre></td></tr></table></figure>
+<h5 id="aeTimeEvent"><a href="#aeTimeEvent" class="headerlink" title="aeTimeEvent"></a>aeTimeEvent</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 时间事件结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">aeTimeEvent</span> &#123;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> id; <span class="comment">/* time event identifier. */</span></span><br><span class="line">    <span class="keyword">long</span> when_sec; <span class="comment">/* seconds */</span></span><br><span class="line">    <span class="keyword">long</span> when_ms; <span class="comment">/* milliseconds */</span></span><br><span class="line">    aeTimeProc *timeProc;<span class="comment">//定时回调函数指针</span></span><br><span class="line">    aeEventFinalizerProc *finalizerProc;<span class="comment">// 定时事件清理函数，当删除定时事件的时候会被调用</span></span><br><span class="line">    <span class="keyword">void</span> *clientData; <span class="comment">//指向 redisClient 的指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">aeTimeEvent</span> *<span class="title">prev</span>;</span><span class="comment">//时间事件表指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">aeTimeEvent</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; aeTimeEvent;</span><br></pre></td></tr></table></figure>
+<h5 id="aeFiredEvent"><a href="#aeFiredEvent" class="headerlink" title="aeFiredEvent"></a>aeFiredEvent</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 触发事件</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">aeFiredEvent</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> fd; <span class="comment">//表示事件发生在哪个文件描述符上面</span></span><br><span class="line">    <span class="keyword">int</span> mask;<span class="comment">//被触发事件的类型</span></span><br><span class="line">&#125; aeFiredEvent;</span><br></pre></td></tr></table></figure>
+<h5 id="aeEventLoop"><a href="#aeEventLoop" class="headerlink" title="aeEventLoop"></a>aeEventLoop</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 事件循环结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">aeEventLoop</span> &#123;</span></span><br><span class="line">    <span class="comment">//记录最大的定时事件 id </span></span><br><span class="line">    <span class="keyword">int</span> maxfd;   <span class="comment">/* highest file descriptor currently registered */</span></span><br><span class="line">    <span class="keyword">int</span> setsize; <span class="comment">/* max number of file descriptors tracked */</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> timeEventNextId; </span><br><span class="line">    <span class="keyword">time_t</span> lastTime;     <span class="comment">//用于系统时间的矫正</span></span><br><span class="line">    aeFileEvent *events; <span class="comment">//文件表</span></span><br><span class="line">    aeFiredEvent *fired; <span class="comment">//触发事件表</span></span><br><span class="line">    aeTimeEvent *timeEventHead;<span class="comment">//定时事件表</span></span><br><span class="line">    <span class="keyword">int</span> stop; <span class="comment">//事件循环停止标志</span></span><br><span class="line">    <span class="keyword">void</span> *apidata; <span class="comment">//统一接口，屏蔽不同平台io服用机制，</span></span><br><span class="line">    aeBeforeSleepProc *beforesleep; <span class="comment">//进入poll之前需要处理的事情</span></span><br><span class="line">    aeBeforeSleepProc *aftersleep;  <span class="comment">//进入poll之后需要处理的事情</span></span><br><span class="line">&#125; aeEventLoop;</span><br></pre></td></tr></table></figure>
+<h4 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    aeCreateEventLoop    <span class="comment">/* 创建总的事件管理结构 */</span></span><br><span class="line">    aeCreateTimeEvent    <span class="comment">/* 创建定时器事件的管理结构 */</span></span><br><span class="line">    aeCreateFileEvent <span class="keyword">for</span> inet socket    <span class="comment">/* 创建网络事件的管理结构 */</span></span><br><span class="line">    aeCreateFileEvent <span class="keyword">for</span> unix socket    <span class="comment">/* 内部通信事件的管理结构 */</span></span><br><span class="line">    aeSetBeforeSleepProc    <span class="comment">/* 设置beforeSleep处理函数 */</span></span><br><span class="line">    aeSetAfterSleepProc    <span class="comment">/* 设置afterSleep处理函数 */</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">while</span> (!stop)  <span class="comment">//aeMain</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//aeProcessEvents</span></span><br><span class="line">        beforeSleep                <span class="comment">/* 调用beforeSleep处理函数 */</span></span><br><span class="line">        aeApiPoll                <span class="comment">/* 进入poll函数 */</span></span><br><span class="line">        afterSleep                <span class="comment">/* 调用afterSleep处理函数 */</span></span><br><span class="line">        process file events    <span class="comment">/* 处理file events */</span></span><br><span class="line">        process time events    <span class="comment">/* 处理time events */</span></span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="aeCreateEventLoop-initServer调用初始化"><a href="#aeCreateEventLoop-initServer调用初始化" class="headerlink" title="aeCreateEventLoop  //initServer调用初始化"></a>aeCreateEventLoop  //initServer调用初始化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">aeEventLoop *aeCreateEventLoop(int setsize) &#123; </span><br><span class="line">    aeEventLoop *eventLoop;</span><br><span class="line">    int i;</span><br><span class="line"></span><br><span class="line">    if ((eventLoop = zmalloc(sizeof(*eventLoop))) == NULL) goto err;</span><br><span class="line">    eventLoop-&gt;events = zmalloc(sizeof(aeFileEvent)*setsize);</span><br><span class="line">    eventLoop-&gt;fired = zmalloc(sizeof(aeFiredEvent)*setsize);</span><br><span class="line">    if (eventLoop-&gt;events == NULL || eventLoop-&gt;fired == NULL) goto err;</span><br><span class="line">    eventLoop-&gt;setsize = setsize;</span><br><span class="line">    eventLoop-&gt;lastTime = time(NULL);</span><br><span class="line">    eventLoop-&gt;timeEventHead = NULL;</span><br><span class="line">    eventLoop-&gt;timeEventNextId = 0;</span><br><span class="line">    eventLoop-&gt;stop = 0;</span><br><span class="line">    eventLoop-&gt;maxfd = -1;</span><br><span class="line">    eventLoop-&gt;beforesleep = NULL;</span><br><span class="line">    eventLoop-&gt;aftersleep = NULL;</span><br><span class="line">    if (aeApiCreate(eventLoop) == -1) goto err;</span><br><span class="line">    /* Events with mask == AE_NONE are not set. So let&apos;s initialize the</span><br><span class="line">     * vector with it. */</span><br><span class="line">    for (i = 0; i &lt; setsize; i++)</span><br><span class="line">        eventLoop-&gt;events[i].mask = AE_NONE;</span><br><span class="line">    return eventLoop;</span><br><span class="line"></span><br><span class="line">err:</span><br><span class="line">    if (eventLoop) &#123;</span><br><span class="line">        zfree(eventLoop-&gt;events);</span><br><span class="line">        zfree(eventLoop-&gt;fired);</span><br><span class="line">        zfree(eventLoop);</span><br><span class="line">    &#125;</span><br><span class="line">    return NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h6><p>server.el = aeCreateEventLoop(server.maxclients+CONFIG_FDSET_INCR);</p>
+<p>setsize = server.maxclients+CONFIG_FDSET_INCR = 10000 + CONFIG_MIN_RESERVED_FDS+96</p>
+<p>CONFIG_MIN_RESERVED_FDS = 32 是Sentinel保留的用于额外的的操作，如listening sockets, log files 等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max 查看系统级别的能够打开的文件句柄的数量</span><br><span class="line">ulimit -a 1024 查看用户进程级的能够打开文件句柄的数量</span><br></pre></td></tr></table></figure>
+<h6 id="相关的案例事件……"><a href="#相关的案例事件……" class="headerlink" title="相关的案例事件……"></a>相关的案例事件……</h6><p>9554:M 24 Mar 10:40:25.869 # Error registering fd event for the new client: Numerical result out of range (fd=10128)</p>
+<p>系统内存不足以fork子进程时，AOF重写就无法启动，而此之前已打开的pipe也永远不会关闭，并在下一次尝试AOF重写时又创建新的pipe，从而造成fd泄漏。</p>
+<p>具体代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rewriteAppendOnlyFileBackground</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">    <span class="keyword">if</span> (aofCreatePipes() != C_OK) <span class="keyword">return</span> C_ERR; <span class="comment">// 创建pipe</span></span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">    <span class="keyword">if</span> ((childpid = fork()) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">/* Child */</span></span><br><span class="line">        <span class="comment">//……</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/* Parent */</span></span><br><span class="line">        <span class="comment">//子进程启动出错处理</span></span><br><span class="line">        <span class="keyword">if</span> (childpid == <span class="number">-1</span>) &#123;</span><br><span class="line">            serverLog(LL_WARNING,</span><br><span class="line">                <span class="string">"Can't rewrite append only file in background: fork: %s"</span>,</span><br><span class="line">                strerror(errno)); <span class="comment">// 最初内存不足正是这里打出的错误log</span></span><br><span class="line">            aofClosePipes();<span class="comment">//fix bug issues/2857</span></span><br><span class="line">            <span class="keyword">return</span> C_ERR;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>##### </p>
+<h5 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h5><h5 id="1-文件事件"><a href="#1-文件事件" class="headerlink" title="1.文件事件"></a>1.文件事件</h5><p>在一般情况下，<code>aeProcessEvents</code> 都会先<strong>计算最近的时间事件发生所需要等待的时间</strong>，然后调用 <code>aeApiPoll</code> 方法在这段时间中等待事件的发生，在这段时间中如果发生了文件事件，就会优先处理文件事件，否则就会一直等待，直到最近的时间事件需要触发：</p>
+<pre><code>numevents = aeApiPoll(eventLoop, tvp);
+
+/* After sleep callback. */
+if (eventLoop-&gt;aftersleep != NULL &amp;&amp; flags &amp; AE_CALL_AFTER_SLEEP)
+    eventLoop-&gt;aftersleep(eventLoop);
+
+for (j = 0; j &lt; numevents; j++) {
+    aeFileEvent *fe = &amp;eventLoop-&gt;events[eventLoop-&gt;fired[j].fd];
+    int mask = eventLoop-&gt;fired[j].mask;
+    int fd = eventLoop-&gt;fired[j].fd;
+    int fired = 0; /* Number of events fired for current fd. */
+
+    int invert = fe-&gt;mask &amp; AE_BARRIER;
+</code></pre><p>​            </p>
+<h2 id="文件事件注册-aeCreateFileEvent"><a href="#文件事件注册-aeCreateFileEvent" class="headerlink" title="文件事件注册  aeCreateFileEvent"></a>文件事件注册  aeCreateFileEvent</h2><h2 id="监听实现"><a href="#监听实现" class="headerlink" title="监听实现"></a>监听实现</h2><p>1.<code>initServer()</code>中完成了对事件循环的初始化操作</p>
+<p>listenToPort</p>
+<p>2.完成了监听套接字的初始化，<code>initServer()</code>还需要为所有监听套接字注册读事件</p>
+<p>acceptTcpHandler/acceptUnixHandler  //回调监听到新连接请求时</p>
+<p>acceptTcpHandler()-&gt;acceptCommonHandler  </p>
+<p>在与客户端成功建立连接之后，调用了<code>acceptCommonHandler()</code>函数，其作用为：<br> 1、 建立并保存服务器与客户端的连接信息，将信息保存到一个struct redisClient 中；<br> 2、为客户端的cfd（已连接的socket）注册读事件，相应的回调函数为<code>readQueryFromClient()</code>，其作用是从socket读取数据，执行相应操作，并回复给客户端(而acceptCommonHandler是为监听socket的读事件回调函数)</p>
+<h2 id="事件循环aeMain"><a href="#事件循环aeMain" class="headerlink" title="事件循环aeMain"></a>事件循环aeMain</h2><p>1、根据时间事件链表计算需要等待的最短事件；<br>2、调用<code>redis aeApiPoll()</code> 进入监听轮询，如果没有事件发生就进入睡眠状态，其实就是进行I/O多路复用函数调用。<br>3、如果有事件发生，处理事件。</p>
+<h2 id="事件触发"><a href="#事件触发" class="headerlink" title="事件触发"></a>事件触发</h2><p>aeApiPoll //多路复用函数阻塞监听</p>
+<p>##### </p>
+<h5 id="2-时间事件"><a href="#2-时间事件" class="headerlink" title="2.时间事件"></a>2.时间事件</h5><p>在 Redis 中会发生两种时间事件：</p>
+<ul>
+<li>一种是定时事件，每隔一段时间会执行一次；</li>
+<li>另一种是非定时事件，只会在某个时间点执行一次；</li>
+</ul>
+<p>aeProcessEvents -&gt;processTimeEvents</p>
+<p><img src="/2019/02/09/Redis4源码阅读学习-2/2.png" alt></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>1时间事件分为定时时间和周期事件，周期事件serverCron  100毫秒</p>
+<p>2时间事件和文件事件合并到一起处理，分开；</p>
+<p>3.时间事件晚于预设</p>
+<p><img src="/2019/02/09/Redis4源码阅读学习-2/aeEventLoop.png" alt></p>
+<h4 id="networking-c"><a href="#networking-c" class="headerlink" title="networking.c"></a>networking.c</h4><p>readQueryFromClient   processCommand</p>
+<p>clientsCronHandleTimeout //keep_alive，ping,异常处理</p>
+<p>三类方法</p>
+<p>1.addReply API  往数据结构里面写东西</p>
+<p>2.Client API 客户端创建释放</p>
+<p>3.工具方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">listMatchObjects</span><br><span class="line">disconnectSlaves</span><br><span class="line">flushSlavesOutputBuffers</span><br><span class="line">acceptTcpHandler</span><br><span class="line">copyClientOutputBuffer</span><br></pre></td></tr></table></figure>
+<h4 id="server-c"><a href="#server-c" class="headerlink" title="server.c"></a>server.c</h4><p>1.Globals</p>
+<p>2.Utility functions</p>
+<p>3.Hash table</p>
+<p>4.Cron</p>
+<p>trackInstantaneousMetric  bug</p>
+<p>writeToClient    server.stat_net_output_bytes += totwritten;</p>
+<pre><code>5.0
+//缓冲区大于32K，且远大于查询缓冲区数据峰值
+//询缓冲区大于32K，且客户端当前处于非活跃状态
+int clientsCronResizeQueryBuffer(client *c)
+
+if (querybuf_size &gt; PROTO_MBULK_BIG_ARG &amp;&amp;
+     ((querybuf_size/(c-&gt;querybuf_peak+1)) &gt; 2 ||
+      idletime &gt; 2))
+{
+    /* Only resize the query buffer if it is actually wasting
+     * at least a few kbytes. */
+    if (sdsavail(c-&gt;querybuf) &gt; 1024*4) {
+        c-&gt;querybuf = sdsRemoveFreeSpace(c-&gt;querybuf);
+    }
+}
+
+4.0
+// 查询缓冲区大于32K，且远大于查询缓冲区数据峰值
+// 查询缓冲区大于1K，且客户端当前处于非活跃状态
+if (((querybuf_size &gt; PROTO_MBULK_BIG_ARG) &amp;&amp;
+    (querybuf_size/(c-&gt;querybuf_peak+1)) &gt; 2) ||
+    (querybuf_size &gt; 1024 &amp;&amp; idletime &gt; 2))
+{
+        /* Only resize the query buffer if it is actually wasting space. */
+        if (sdsavail(c-&gt;querybuf) &gt; 1024) {
+            c-&gt;querybuf = sdsRemoveFreeSpace(c-&gt;querybuf);
+        }
+ }
+
+//c-&gt;querybuf = sdsMakeRoomFor(c-&gt;querybuf, readlen);
+初始化默认分配的大小就是32k
+如果客户端数量比较多，且刚好比较空闲，需要一次处理很多客户端的输入缓冲区，阻塞或者崩溃
+</code></pre><p>5.serverCron 相关的知识点</p>
+<p>1）.信息更新，统计</p>
+<p>2).  XXXXCron</p>
+<p>3). 持久化</p>
+<p>4). 集群</p>
+<p>6.Server initialization</p>
+<p>7.Redis OP Array API  持久化复制的时候命令数组</p>
+<p>8.Commands lookup and execution</p>
+<p>9.Shutdown</p>
+<p>10.Commands</p>
+<ol start="11">
+<li><strong>linux</strong></li>
+</ol>
+<p>12.main</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c，数据库，缓存，redis/" rel="tag"># c，数据库，缓存，redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/09/Redis4源码阅读学习-1/" rel="next" title="redis4源码阅读学习-1">
+                <i class="fa fa-chevron-left"></i> redis4源码阅读学习-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/begin/" rel="prev" title="缺舟">
+                缺舟 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my.jpg" alt="三鱼">
+            
+              <p class="site-author-name" itemprop="name">三鱼</p>
+              <p class="site-description motion-element" itemprop="description">挥笔点墨卷再开，醉仰观岚景悠哉。倾向兰曰敬邀曰，叹矣自笑一字呆。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xyiot" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:softstarxy@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.weibo.com/5419866199/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redis客户端和服务器的相关代码"><span class="nav-number">1.</span> <span class="nav-text">redis客户端和服务器的相关代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ae-c（Redis-的事件处理器实现（基于-Reactor-模式））"><span class="nav-number">1.1.</span> <span class="nav-text">ae.c（Redis 的事件处理器实现（基于 Reactor 模式））</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关数据结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">相关数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#aeFileEvent"><span class="nav-number">1.1.1.0.1.</span> <span class="nav-text">aeFileEvent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#aeTimeEvent"><span class="nav-number">1.1.1.0.2.</span> <span class="nav-text">aeTimeEvent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#aeFiredEvent"><span class="nav-number">1.1.1.0.3.</span> <span class="nav-text">aeFiredEvent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#aeEventLoop"><span class="nav-number">1.1.1.0.4.</span> <span class="nav-text">aeEventLoop</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体流程"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">整体流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#aeCreateEventLoop-initServer调用初始化"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">aeCreateEventLoop  //initServer调用初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#代码说明"><span class="nav-number">1.1.1.1.1.1.</span> <span class="nav-text">代码说明</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#相关的案例事件……"><span class="nav-number">1.1.1.1.1.2.</span> <span class="nav-text">相关的案例事件……</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#事件类型"><span class="nav-number">1.1.1.1.2.</span> <span class="nav-text">事件类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-文件事件"><span class="nav-number">1.1.1.1.3.</span> <span class="nav-text">1.文件事件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件事件注册-aeCreateFileEvent"><span class="nav-number">1.2.</span> <span class="nav-text">文件事件注册  aeCreateFileEvent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#监听实现"><span class="nav-number">1.3.</span> <span class="nav-text">监听实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环aeMain"><span class="nav-number">1.4.</span> <span class="nav-text">事件循环aeMain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件触发"><span class="nav-number">1.5.</span> <span class="nav-text">事件触发</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-时间事件"><span class="nav-number">1.5.0.0.1.</span> <span class="nav-text">2.时间事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">1.5.0.0.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#networking-c"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">networking.c</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server-c"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">server.c</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三鱼</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
