@@ -467,7 +467,7 @@
         
           
             <h1 id="ssl-pinning-mode"><a href="#ssl-pinning-mode" class="headerlink" title="ssl pinning mode"></a>ssl pinning mode</h1><p>https抓包的问题，工作的一个小争论引发的，不相信https可以抓包分析数据，非要我演示一次。https抓包其实早就已经烂大街，本着用事实说话的方式，安装了Charles，发现竟然有部分如淘宝，支付宝的包无法解析，jd的是正常的，好奇的查了一下，才知道现在有ssl pinning mode这个东西。</p>
-<h2 id="简述一下https的连接过程"><a href="#简述一下https的连接过程" class="headerlink" title="简述一下https的连接过程"></a>简述一下https的连接过程</h2><p><img src="/2017/10/01/ssl-pinning/1.gif" alt></p>
+<h2 id="简述一下https的连接过程"><a href="#简述一下https的连接过程" class="headerlink" title="简述一下https的连接过程"></a>简述一下https的连接过程</h2><p><img src="ssl-pinning/1.gif" alt></p>
 <h3 id="上图中实线部分是必须的，虚线部分是可选的。该流程完成了两个任务：服务器身份的验证、加密传输对称加密密钥。"><a href="#上图中实线部分是必须的，虚线部分是可选的。该流程完成了两个任务：服务器身份的验证、加密传输对称加密密钥。" class="headerlink" title="上图中实线部分是必须的，虚线部分是可选的。该流程完成了两个任务：服务器身份的验证、加密传输对称加密密钥。"></a>上图中实线部分是必须的，虚线部分是可选的。该流程完成了两个任务：服务器身份的验证、加密传输对称加密密钥。</h3><p>1、client hello和 server hello表示双方要建立一个加密会话。</p>
 <p>2、服务器把数字证书传输给客户端，证书中包含服务器公钥，客户端用公钥解析证书中的数字签名，可以验证服务器的身份。</p>
 <p>3、Server Hello Done表示hello 流程结束。</p>
@@ -483,7 +483,7 @@
 <li>身份认证。保证用户访问的是百度服务，即使被DNS劫持到了第三方站点，也会提醒用户没有访问百度服务，有可能被劫持 </li>
 <li>数据完整性。防止内容被第三方冒充或者篡改。</li>
 </ol>
-<h3 id="带来的问题：中间人攻击（MITM）"><a href="#带来的问题：中间人攻击（MITM）" class="headerlink" title="带来的问题：中间人攻击（MITM）"></a>带来的问题：中间人攻击（MITM）</h3><p><img src="/2017/10/01/ssl-pinning/2.jpeg" alt></p>
+<h3 id="带来的问题：中间人攻击（MITM）"><a href="#带来的问题：中间人攻击（MITM）" class="headerlink" title="带来的问题：中间人攻击（MITM）"></a>带来的问题：中间人攻击（MITM）</h3><p><img src="ssl-pinning/2.jpeg" alt></p>
 <ol>
 <li>客户端首先要向远程的服务器发送建立连接的请求，并带有自己的支持的加解密的方式级别，这个过程经过了中间人的窃听，中间人把消息修改后发给了真正的目的地——服务端</li>
 <li>服务端收到了要建立https链接的请求后，会发送当时从证书签发机构签发的公钥证书。这个过程中中间人又窃听了，然后中间人替换上自己的证书后又转发给了客户端。</li>
@@ -641,13 +641,13 @@
           
             <p># </p>
 <h1 id="Android外观模式的应用"><a href="#Android外观模式的应用" class="headerlink" title="Android外观模式的应用"></a>Android外观模式的应用</h1><pre><code>这是一个`app`最初的项目结构  
-</code></pre><p><img src="/2016/08/01/Android-Facede/1.png" alt></p>
+</code></pre><p><img src="Android-Facede/1.png" alt></p>
 <p>所有的页面都放在<code>activities</code>，自定义<code>view</code>放在<code>widget</code>，网络相关的封装在<code>network</code>，所有工具类放在<code>utils</code>，少数的<code>xxxManager</code>单例藏在某个包下面，因为少没必要过度提炼就这样吧…<br>没什么问题，项目上线！  </p>
 <p>随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在<code>activity</code>里面没来得及提炼出来，<code>xxxManager</code>散落一地，<code>callback</code>到处都是…各个包的类都在快速增长</p>
 <p>如果用线来表示相互间的调用，那么整个项目就是一个毛线团，找代码都开始难找了<br>那么这时候就改理一理这个线团了</p>
 <p>之前app没有一个明确的职责分层，横向依赖很严重，小改伤筋动骨</p>
 <h5 id="AppContext与外观模式的应用"><a href="#AppContext与外观模式的应用" class="headerlink" title="AppContext与外观模式的应用"></a>AppContext与外观模式的应用</h5><p>随着业务的发展，<code>app</code>里面的组件，业务线也会逐渐的增多。<br>每个业务线一个<code>module</code>，那么新的问题就来了，<code>module</code>之间的通信问题，横向依赖问题。  </p>
-<p>每个<code>module</code>除了在自己的地盘处理业务，还有可能给其他module提供服务，或者这个<code>module</code>就是一个<code>plugin</code>风格的业务组件。<br>比较粗暴的做法，直接引用<code>module</code>，想调谁就引用谁，那么这和之前单<code>module</code>，类的横向引用又有什么本质上的区别呢？<br>这里我们可以借鉴下<code>Android</code>的<code>Context</code>类的设计，<code>Context</code>就是封装了一大堆<code>Android</code>的子系统（通过<code>getSystemService</code>获取），处理在Android环境下的通信问题。<br>那么我们可以依葫芦画瓢的设计一个我们自己的<code>AppContext</code>，我们的业务<code>module</code>或者组件都是在<code>AppContext</code>环境下，他们之间的通信就通过<code>AppContext</code>，具体业务就交给具体的<code>modul</code>e实现.<br>如果设计多个业务<code>module</code>的协作，那么也应该由<code>AppContext</code>屏蔽协作的细节，这是一个很典型的外观模式的应用。<br>在面向对象编程范式内，很多问题都可以通过引入额外的一层来解决<br><img src="/2016/08/01/Android-Facede/2.png" alt>  </p>
+<p>每个<code>module</code>除了在自己的地盘处理业务，还有可能给其他module提供服务，或者这个<code>module</code>就是一个<code>plugin</code>风格的业务组件。<br>比较粗暴的做法，直接引用<code>module</code>，想调谁就引用谁，那么这和之前单<code>module</code>，类的横向引用又有什么本质上的区别呢？<br>这里我们可以借鉴下<code>Android</code>的<code>Context</code>类的设计，<code>Context</code>就是封装了一大堆<code>Android</code>的子系统（通过<code>getSystemService</code>获取），处理在Android环境下的通信问题。<br>那么我们可以依葫芦画瓢的设计一个我们自己的<code>AppContext</code>，我们的业务<code>module</code>或者组件都是在<code>AppContext</code>环境下，他们之间的通信就通过<code>AppContext</code>，具体业务就交给具体的<code>modul</code>e实现.<br>如果设计多个业务<code>module</code>的协作，那么也应该由<code>AppContext</code>屏蔽协作的细节，这是一个很典型的外观模式的应用。<br>在面向对象编程范式内，很多问题都可以通过引入额外的一层来解决<br><img src="Android-Facede/2.png" alt>  </p>
 <p>有些基础组件<code>module</code>或通用性非常高的<code>module</code>，可以下沉到<code>AppContext</code>下面</p>
 <p><code>AppContext</code>的核心职责就是封装好<code>app</code>所用到的子系统（审视下以前代码里面的单例<code>manager</code>，思考一下他是不是能作为<code>app</code>的一个子系统工作）来统一管理服务，无论该服务是基于<code>Android</code>，还是业务<code>module</code>，还是其他第三方组件。当然这里也应该<code>module</code>与<code>app</code>通信，一些app级别的配置也可以在这里处理</p>
 <p>在实际操作中，一定要渐进式的处理，主要是因为：</p>
@@ -659,14 +659,14 @@
 <p>比如目前工程中moduleA直接依赖moduleB调用接口，重构过程中不必直接取消依赖（不要影响目前的业务），在AppContext中添加一个moduleB的service，这个service代理moduleB提供的接口服务，然后moduleA调用接口逐渐的转向AppContext提供的方式，当转得差不多的时候就断掉moduleA与moduleB之间的依赖。</p>
 </blockquote>
 <p>对于有些业务线的<code>module</code>，完全可以把他当做一个app来对待  </p>
-<p><img src="/2016/08/01/Android-Facede/3.png" alt>  </p>
+<p><img src="Android-Facede/3.png" alt>  </p>
 <h5 id="AppContext只是解决了module之间的通信或者是子系统的管理"><a href="#AppContext只是解决了module之间的通信或者是子系统的管理" class="headerlink" title="AppContext只是解决了module之间的通信或者是子系统的管理"></a>AppContext只是解决了module之间的通信或者是子系统的管理</h5><blockquote>
 <p>由多收缩到一的问题（统一依赖AppContext），只限于单进程，还没有跨进程，跨app，关于跨进程local，remote的问题，另开一贴讲设计思路与实现</p>
 </blockquote>
 <p>一个<code>App</code>除了通信，还有一些工具类，一些的<code>style</code>，<code>theme</code>，<code>resource</code>相关的定义。  </p>
 <p>很多<code>app</code>都会搞一个类似<code>core</code>，<code>common</code>的<code>module</code>，一股脑儿的扔里面，这玩意儿到后面绝对是一锅东北菜，乱炖的感觉。  </p>
 <p>对于<code>module</code>层级下面的<code>util</code>，只能是高度通用的<code>util</code>才放到下面，命名一定要体现其具体功能，千万不要直接<code>utils</code>，<code>StringUtils</code>等很模糊的命名，推荐<code>Logger</code>，<code>DeviceUtil</code>，<code>UrlUtil</code>等一眼就能看出其具体功能的<code>util</code>。  </p>
-<p>对于<code>resource</code>相关的定义，单独一个<code>module</code><br>这些<code>module</code>都会逐渐沉淀下来，以后<code>app</code>按需依赖.<br><img src="/2016/08/01/Android-Facede/4.png" alt><br>黑线一下的就是业务线开发的基础，是不是有点类似<code>android.jar</code>的感觉</p>
+<p>对于<code>resource</code>相关的定义，单独一个<code>module</code><br>这些<code>module</code>都会逐渐沉淀下来，以后<code>app</code>按需依赖.<br><img src="Android-Facede/4.png" alt><br>黑线一下的就是业务线开发的基础，是不是有点类似<code>android.jar</code>的感觉</p>
 <h4 id="UserCase"><a href="#UserCase" class="headerlink" title="UserCase"></a>UserCase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">人之所以聪明，是因为人会创造工具并使用</span><br><span class="line"></span><br><span class="line">重构的基础是人员，如何照顾开发的情绪，如何渐进式的进行重构，如何借助工具进行重构，重构不等于重写，重构不等于业务都给我停下让路</span><br></pre></td></tr></table></figure>
 
           
@@ -834,9 +834,9 @@
 <p>co_resume</p>
 <p>同时创建的协程第一次启动也是使用这个接口，并且在第一次启动的时候会初始化特殊的coctx_t结构，在协程执行结束后，会自动设置cEnd=1，同时将自己yield出去</p>
 <p>栈帧stack frame layout：</p>
-<p><img src="/2016/04/08/libco/illustration-1.png" alt></p>
+<p><img src="libco/illustration-1.png" alt></p>
 <p>调用子函数时，父函数从右到左将函数入栈，最后将返回地址入栈保存后，跳到子函数的地址执行。子函数压栈保存父函数的 %ebp，并将 %ebp 设置为当前 %esp。子函数通过 %ebp + 4 读取参数1，%ebp + 8 读取参数2</p>
-<p><img src="/2016/04/08/libco/illustration-2.png" alt></p>
+<p><img src="libco/illustration-2.png" alt></p>
 <p>libco程序的第一个协程呢，假如第一个协程yield时，CPU控制权让给谁呢？关于这个问题，我们首先要明白这“第一个”协程是什么。实际上，libco的第一个协程，即执行main函数的协程，是一个特殊的协程。这个协程又可以称作主协程，它负责协调其他协程的调度执行（后文我们会看到，还有网络 </p>
 <p>I/O以及定时事件的驱动），它自己则永远不会yield，不会主动让出 </p>
 <p>CPU。不让出CPU，不等于说它一直霸占着CPU。我们知道CPU执行权有两种转移途径，一是通过yield让给调用者，其二则是resume启动其他协程运行。</p>
