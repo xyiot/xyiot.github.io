@@ -883,6 +883,196 @@ if (((querybuf_size &gt; PROTO_MBULK_BIG_ARG) &amp;&amp;
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三鱼">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三余无梦生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/09/DDoS防护的方案和演进/" itemprop="url">DDoS防护的方案和演进</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T18:02:37+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>国内某一线公司的DDoS防护方案迭代    </p>
+</blockquote>
+<blockquote>
+<p>单点故障</p>
+<p>单点资源瓶颈</p>
+<p>主要解决办法：程序识别或运营通过调度DNS来解决</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/1.png" alt></p>
+<blockquote>
+<p>LVS+KEEPALIVED+JLB</p>
+<p>高效率</p>
+<p>易部署</p>
+<p>易管理</p>
+<p>能充分利用机房资源（所有计算机、以及所有带宽资源）</p>
+<p>上行带宽瓶颈</p>
+<p>数据报文转发瓶颈</p>
+<p>无抵御攻击能力</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/2.png" alt></p>
+<blockquote>
+<p>架构图：DPVS+Firewall+keepalived+JLB</p>
+<p>增加了抵御L4攻击的能力</p>
+<p>增加了数据包的转发能力</p>
+<p>引入问题：</p>
+<p>开发、调试、部署相对麻烦</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/3.png" alt></p>
+<blockquote>
+<p>架构图：ECMP+DPVS+Firewall+JLB</p>
+<p>解决了上行瓶颈问题</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/4.png" alt></p>
+<blockquote>
+<p>WAN/LAN Anycast +ECMP+Firewall&amp;LoadBalancer（XDP+eBPF）</p>
+<p>机房整体资源充分利用，整体上无明显的缺点</p>
+<p>需要开发很多周边控制程序</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/5.png" alt></p>
+<blockquote>
+<p>WAN/LAN Anycast +ECMP+Firewall（XDP+eBPF）</p>
+<p>机房整体资源利用</p>
+<p>避免引入了故障点（LB，firewall）</p>
+<p>需要开发很多周边控制程序</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/6.png" alt></p>
+<blockquote>
+<p>个人感受：从框架的迭代进化来看，其实没有什么技术上的难点，用一句很简单的话来说就是，所以99%的计算机问题都可以通过加入一个中间层来解决，和今天的大公司的移动端，后端框架一样，无非是变的的越来越重，越来越层，把问题细分化来解决。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/01/ssl-pinning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1916,161 +2106,6 @@ if (((querybuf_size &gt; PROTO_MBULK_BIG_ARG) &amp;&amp;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2014/06/06/c-11学习笔记-explicit构造函数和private/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="三鱼">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/my.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三余无梦生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/06/06/c-11学习笔记-explicit构造函数和private/" itemprop="url">c++ 11学习笔记--explicit构造函数和private</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2014-06-06T17:58:32+08:00">
-                2014-06-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>某天写一个用特定数据类型才能构造的类，就习惯性的声明了一个默认的构造函数，并声明为了private，避免勿调用默认的构造函数去声明这个类。但是却收到涛哥的一封邮件，建议用explicit去申明就行了，不建议用private.</p>
-<p>处于懒惰的习惯，我回了一个ok，今天无意中看到邮件了，发现不对，靠</p>
-<p>还是用代码说话吧：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class myStr</span><br><span class="line">&#123;</span><br><span class="line">protected:</span><br><span class="line">    char* str_;</span><br><span class="line">    </span><br><span class="line">public:</span><br><span class="line">    myStr(void)                       // 默认的构造函数，什么也不做</span><br><span class="line">    : str_(nullptr)</span><br><span class="line">    &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    myStr(int i)                       //带int类型构造函数，什么也不做</span><br><span class="line">    : str_(nullptr)</span><br><span class="line">&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>不管我是调用    myStr s = ‘A’;还是调用    myStr s = 1；都会去调用到myStr(int i)这个构造函数，默认的做了类型转.特别是这种看上去还合理的转换，换个离谱点的myStr s = “test”,还是可以编译，也最多只是收到一个警告：Multi-character character constant，也许某些编译上不允许，或者把警告等级打高了会报错，但是这都不是我想要的转换，c++就是这样充满了各种坑的语言，</p>
-<p>如果加上explicit，表示不允许编译器做这种转换。</p>
-<p>总结来说就是所有单参数的构造函数都应该声明explicit，避免编译器做各种明明奇妙的类型转换。</p>
-<p>引用effective c++：被声明为explicit的构造函数通常比其non-explicit兄弟更受欢迎。因为它们禁止编译器执行非预期（往往也不被期望）的类型转换。除非我有一个好理由允许构造函数被用于隐式类型转换，否则我会把它声明为explicit。我鼓励你遵循相同的政策。</p>
-<p>把默认构造函数申明为private,我认为很简单，就是要么是单例，要么就是希望只调用我提供的构造函数来声明对象。</p>
-<p>大多数时候，我觉得更好的做法就是将拷贝构造函数和operator=(赋值操作符重载)声明成private。</p>
-<p>禁止一个类的外部用户对这个类的对象进行复制动作，有需要的时候再去打开这些。</p>
-<p>为什么编译器就不能提供一个默认安全封闭的类呢，当我们需要的时候再去申请各种特性。不要把类的安全都交给不靠谱的码农，大多数时候我们自己写代码的时候也不清楚自己代码的危险性。c++太相信码农了，其实大部分码农都是极度不靠谱的。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2123,7 +2158,7 @@ if (((querybuf_size &gt; PROTO_MBULK_BIG_ARG) &amp;&amp;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2145,7 +2180,7 @@ if (((querybuf_size &gt; PROTO_MBULK_BIG_ARG) &amp;&amp;
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

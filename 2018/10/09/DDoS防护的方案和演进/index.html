@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="DDos,">
 
 
 
@@ -81,16 +81,25 @@
 
 
 
-<meta name="description" content="挥笔点墨卷再开，醉仰观岚景悠哉。倾向兰曰敬邀曰，叹矣自笑一字呆。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="三余无梦生">
-<meta property="og:url" content="http://yoursite.com/tags/iOS/index.html">
+<meta name="description" content="国内某一线公司的DDoS防护方案迭代       单点故障 单点资源瓶颈 主要解决办法：程序识别或运营通过调度DNS来解决    LVS+KEEPALIVED+JLB 高效率 易部署 易管理 能充分利用机房资源（所有计算机、以及所有带宽资源） 上行带宽瓶颈 数据报文转发瓶颈 无抵御攻击能力    架构图：DPVS+Firewall+keepalived+JLB 增加了抵御L4攻击的能力 增加了数">
+<meta name="keywords" content="DDos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDoS防护的方案和演进">
+<meta property="og:url" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/index.html">
 <meta property="og:site_name" content="三余无梦生">
-<meta property="og:description" content="挥笔点墨卷再开，醉仰观岚景悠哉。倾向兰曰敬邀曰，叹矣自笑一字呆。">
+<meta property="og:description" content="国内某一线公司的DDoS防护方案迭代       单点故障 单点资源瓶颈 主要解决办法：程序识别或运营通过调度DNS来解决    LVS+KEEPALIVED+JLB 高效率 易部署 易管理 能充分利用机房资源（所有计算机、以及所有带宽资源） 上行带宽瓶颈 数据报文转发瓶颈 无抵御攻击能力    架构图：DPVS+Firewall+keepalived+JLB 增加了抵御L4攻击的能力 增加了数">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/6.png">
+<meta property="og:updated_time" content="2019-04-10T12:31:52.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三余无梦生">
-<meta name="twitter:description" content="挥笔点墨卷再开，醉仰观岚景悠哉。倾向兰曰敬邀曰，叹矣自笑一字呆。">
+<meta name="twitter:title" content="DDoS防护的方案和演进">
+<meta name="twitter:description" content="国内某一线公司的DDoS防护方案迭代       单点故障 单点资源瓶颈 主要解决办法：程序识别或运营通过调度DNS来解决    LVS+KEEPALIVED+JLB 高效率 易部署 易管理 能充分利用机房资源（所有计算机、以及所有带宽资源） 上行带宽瓶颈 数据报文转发瓶颈 无抵御攻击能力    架构图：DPVS+Firewall+keepalived+JLB 增加了抵御L4攻击的能力 增加了数">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/1.png">
 
 
 
@@ -120,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/iOS/">
+  <link rel="canonical" href="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/">
 
 
 
 
 
-  <title>标签: iOS | 三余无梦生</title>
+  <title>DDoS防护的方案和演进 | 三余无梦生</title>
   
 
 
@@ -145,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -239,78 +248,226 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>iOS<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/DDoS防护的方案和演进/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三鱼">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三余无梦生">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2014/05/19/撸京东APP学到的/" itemprop="url">
-              
-                <span itemprop="name">撸京东APP学到的</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">DDoS防护的方案和演进</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-05-19T18:30:38+08:00" content="2014-05-19">
-          05-19
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-09T18:02:37+08:00">
+                2018-10-09
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全/" itemprop="url" rel="index">
+                    <span itemprop="name">安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2014/05/13/撸文轩APP学到的/" itemprop="url">
-              
-                <span itemprop="name">撸文轩APP学到的</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2014-05-13T18:30:38+08:00" content="2014-05-13">
-          05-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <blockquote>
+<p>国内某一线公司的DDoS防护方案迭代    </p>
+</blockquote>
+<blockquote>
+<p>单点故障</p>
+<p>单点资源瓶颈</p>
+<p>主要解决办法：程序识别或运营通过调度DNS来解决</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/1.png" alt></p>
+<blockquote>
+<p>LVS+KEEPALIVED+JLB</p>
+<p>高效率</p>
+<p>易部署</p>
+<p>易管理</p>
+<p>能充分利用机房资源（所有计算机、以及所有带宽资源）</p>
+<p>上行带宽瓶颈</p>
+<p>数据报文转发瓶颈</p>
+<p>无抵御攻击能力</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/2.png" alt></p>
+<blockquote>
+<p>架构图：DPVS+Firewall+keepalived+JLB</p>
+<p>增加了抵御L4攻击的能力</p>
+<p>增加了数据包的转发能力</p>
+<p>引入问题：</p>
+<p>开发、调试、部署相对麻烦</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/3.png" alt></p>
+<blockquote>
+<p>架构图：ECMP+DPVS+Firewall+JLB</p>
+<p>解决了上行瓶颈问题</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/4.png" alt></p>
+<blockquote>
+<p>WAN/LAN Anycast +ECMP+Firewall&amp;LoadBalancer（XDP+eBPF）</p>
+<p>机房整体资源充分利用，整体上无明显的缺点</p>
+<p>需要开发很多周边控制程序</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/5.png" alt></p>
+<blockquote>
+<p>WAN/LAN Anycast +ECMP+Firewall（XDP+eBPF）</p>
+<p>机房整体资源利用</p>
+<p>避免引入了故障点（LB，firewall）</p>
+<p>需要开发很多周边控制程序</p>
+</blockquote>
+<p><img src="/2018/10/09/DDoS防护的方案和演进/6.png" alt></p>
+<blockquote>
+<p>个人感受：从框架的迭代进化来看，其实没有什么技术上的难点，用一句很简单的话来说就是，所以99%的计算机问题都可以通过加入一个中间层来解决，和今天的大公司的移动端，后端框架一样，无非是变的的越来越重，越来越层，把问题细分化来解决。</p>
+</blockquote>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DDos/" rel="tag"># DDos</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/01/ssl-pinning/" rel="next" title="ssl pinning">
+                <i class="fa fa-chevron-left"></i> ssl pinning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/09/Redis4源码阅读学习-1/" rel="prev" title="redis4源码阅读学习-1">
+                redis4源码阅读学习-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -318,6 +475,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -585,6 +746,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
