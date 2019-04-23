@@ -90,7 +90,7 @@
 <meta property="og:description" content="redis5.0配置说明 配置文件中单元大小的解释，不区分大小写  1234567891011# Note on units: when memory size is needed, it is possible to specify# it in the usual form of 1k 5GB 4M and so forth:## 1k =&amp;gt; 1000 bytes# 1kb =&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/04/21/redis5配置及优化总结/1111.png">
-<meta property="og:updated_time" content="2019-04-22T06:04:25.322Z">
+<meta property="og:updated_time" content="2019-04-23T07:11:14.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis配置及优化总结">
 <meta name="twitter:description" content="redis5.0配置说明 配置文件中单元大小的解释，不区分大小写  1234567891011# Note on units: when memory size is needed, it is possible to specify# it in the usual form of 1k 5GB 4M and so forth:## 1k =&amp;gt; 1000 bytes# 1kb =&amp;gt;">
@@ -352,10 +352,9 @@
 
       
         <h2 id="redis5-0配置说明"><a href="#redis5-0配置说明" class="headerlink" title="redis5.0配置说明"></a>redis5.0配置说明</h2><ol>
-<li>配置文件中单元大小的解释，不区分大小写</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Note on units: when memory size is needed, it is possible to specify</span><br><span class="line"># it in the usual form of 1k 5GB 4M and so forth:</span><br><span class="line">#</span><br><span class="line"># 1k =&gt; 1000 bytes</span><br><span class="line"># 1kb =&gt; 1024 bytes</span><br><span class="line"># 1m =&gt; 1000000 bytes</span><br><span class="line"># 1mb =&gt; 1024*1024 bytes</span><br><span class="line"># 1g =&gt; 1000000000 bytes</span><br><span class="line"># 1gb =&gt; 1024*1024*1024 bytes</span><br><span class="line">#</span><br><span class="line"># units are case insensitive so 1GB 1Gb 1gB are all the same.</span><br></pre></td></tr></table></figure>
-<ol start="2">
+<li><p>配置文件中单元大小的解释，不区分大小写</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Note on units: when memory size is needed, it is possible to specify</span><br><span class="line"># it in the usual form of 1k 5GB 4M and so forth:</span><br><span class="line">#</span><br><span class="line"># 1k =&gt; 1000 bytes</span><br><span class="line"># 1kb =&gt; 1024 bytes</span><br><span class="line"># 1m =&gt; 1000000 bytes</span><br><span class="line"># 1mb =&gt; 1024*1024 bytes</span><br><span class="line"># 1g =&gt; 1000000000 bytes</span><br><span class="line"># 1gb =&gt; 1024*1024*1024 bytes</span><br><span class="line">#</span><br><span class="line"># units are case insensitive so 1GB 1Gb 1gB are all the same.</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>配置模板，针对个性化配置</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 假如说你有一个可用于所有的 redis server 的标准配置模板，</span><br><span class="line"># 但针对某些 server 又需要一些个性化的设置，</span><br><span class="line"># 你可以使用 include 来包含一些其他的配置文件，这对你来说是非常有用的。</span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> /path/to/local.conf</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">include</span> /path/to/other.conf</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -371,12 +370,12 @@
 <li><p>TCP 监听的最大容纳数量  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tcp-backlog 511</span><br><span class="line">//在高并发的环境下，你需要把这个值调高以避免客户端连接缓慢的问题。</span><br><span class="line">//值的大小是受somaxconn影响，调大需要修改内核的somaxconn值，实际应该是tcp过程中accept queue队列的最大值</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>7.unix socket方式来接收请求</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># unixsocket /tmp/redis.sock</span><br><span class="line"># unixsocketperm 700</span><br><span class="line">//通过unixsocket配置项来指定unix socket文件的路径，并通过unixsocketperm来指定文件的权限</span><br></pre></td></tr></table></figure>
-<p>8.redis-client连接断开时间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeout 0</span><br><span class="line">redis-client一直没有请求发向server端，那么server端有权主动关闭这个连接，可以通过timeout来设置“空闲超时时限”，0表示永不关闭，推荐配置为300</span><br></pre></td></tr></table></figure>
-<ol start="9">
+<li><p>unix socket方式来接收请求</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># unixsocket /tmp/redis.sock</span><br><span class="line"># unixsocketperm 700</span><br><span class="line">//通过unixsocket配置项来指定unix socket文件的路径，并通过unixsocketperm来指定文件的权限</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>redis-client连接断开时间</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timeout 0</span><br><span class="line">redis-client一直没有请求发向server端，那么server端有权主动关闭这个连接，可以通过timeout来设置“空闲超时时限”，0表示永不关闭，推荐配置为300</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>tcp-keepalive 300  //tcp保持连接的时长</p>
 </li>
 <li><p>守护进程</p>
