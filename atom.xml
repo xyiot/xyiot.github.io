@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-24T02:41:41.212Z</updated>
+  <updated>2019-04-28T00:26:10.245Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis知识点思维导图</title>
+    <link href="http://yoursite.com/2019/04/28/redis%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"/>
+    <id>http://yoursite.com/2019/04/28/redis知识点思维导图/</id>
+    <published>2019-04-28T00:22:45.000Z</published>
+    <updated>2019-04-28T00:26:10.245Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="根据最近学习redis相关内容总结的一个redis知识点思维导图"><a href="#根据最近学习redis相关内容总结的一个redis知识点思维导图" class="headerlink" title="根据最近学习redis相关内容总结的一个redis知识点思维导图"></a>根据最近学习redis相关内容总结的一个redis知识点思维导图</h2><p><img src="redis知识点思维导图/redis知识点思维导图.png" alt></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;根据最近学习redis相关内容总结的一个redis知识点思维导图&quot;&gt;&lt;a href=&quot;#根据最近学习redis相关内容总结的一个redis知识点思维导图&quot; class=&quot;headerlink&quot; title=&quot;根据最近学习redis相关内容总结的一个redis知识点
+      
+    
+    </summary>
+    
+      <category term="第三方源码库" scheme="http://yoursite.com/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81%E5%BA%93/"/>
+    
+    
+      <category term="redis" scheme="http://yoursite.com/tags/redis/"/>
+    
+  </entry>
   
   <entry>
     <title>三场有趣的发布会</title>
@@ -541,36 +566,6 @@
       <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
     
       <category term="c++" scheme="http://yoursite.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>stun流程理解</title>
-    <link href="http://yoursite.com/2011/01/01/stun/"/>
-    <id>http://yoursite.com/2011/01/01/stun/</id>
-    <published>2011-01-01T00:59:58.000Z</published>
-    <updated>2019-04-08T14:33:13.404Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><ol><li><p>A向S发出Allocate Request，请求S在自己的IP地址上为A分配一个端口。</p></li><li><p>S收到A的Allocate请求后，为A分配一个端口aport。并向A返回一个Allocate Response。</p></li><li><p>A向S发出Channel Bind请求，请求将B的（IP地址UDP端口）对绑定到一个Channel号ano上。</p></li></ol><p>4.S收到Channel Bind请求后，将Channel号ano和B的（IP地址UDP端口）对绑定，并向A返回一个Channel Bind Success回复。</p><p>5.之后A可以用Channel Data命令通过Channel号ano向B发消息。Channel Data命令实际上将消息发给了S，S再通过为A分配的端口aport向B转发。</p><ol start="6"><li>B收到的A的消息中，源地址显示的是S为A分配的中转地址（S的IP地址:aport），B可以直接向这个中转地址发消息，S会将其转发给A。</li></ol><p><strong>stun协议的缺点是服务器负载太高，容易成为性能瓶颈。</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;流程&quot;&gt;&lt;a href=&quot;#流程&quot; class=&quot;headerlink&quot; title=&quot;流程&quot;&gt;&lt;/a&gt;流程&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;A向S发出Allocate Request，请求S在自己的IP地址上为A分配一个端口。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-      
-    
-    </summary>
-    
-      <category term="协议" scheme="http://yoursite.com/categories/%E5%8D%8F%E8%AE%AE/"/>
-    
-    
-      <category term="NAT" scheme="http://yoursite.com/tags/NAT/"/>
-    
-      <category term="ICE" scheme="http://yoursite.com/tags/ICE/"/>
     
   </entry>
   
