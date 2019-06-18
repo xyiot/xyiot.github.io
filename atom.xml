@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chiqtv.cn/"/>
-  <updated>2019-04-29T12:55:35.223Z</updated>
+  <updated>2019-06-18T12:45:46.326Z</updated>
   <id>http://chiqtv.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从一道最常见的面试题聊起-浏览器输入网址后发生的故事</title>
+    <link href="http://chiqtv.cn/2019/05/01/%E4%BB%8E%E4%B8%80%E9%81%93%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98%E8%81%8A%E8%B5%B7-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E6%95%85%E4%BA%8B/"/>
+    <id>http://chiqtv.cn/2019/05/01/从一道最常见的面试题聊起-浏览器输入网址后发生的故事/</id>
+    <published>2019-05-01T00:59:58.000Z</published>
+    <updated>2019-06-18T12:45:46.326Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="从一道最常见的面试题聊起-浏览器输入网址后发生的故事"><a href="#从一道最常见的面试题聊起-浏览器输入网址后发生的故事" class="headerlink" title="从一道最常见的面试题聊起-浏览器输入网址后发生的故事"></a>从一道最常见的面试题聊起-浏览器输入网址后发生的故事</h1><h3 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h3><ol><li><p>dns解析的完整流程 ，本地缓存，域名服务器，udp协议</p></li><li><p>dns解析各种问题,dns劫持，dns设计缺陷，安全隐患，易被攻击等</p></li><li><p>互联网产品解决方案，HttpDNS，大厂基于HttpDNS的优化，全局精确流量调度等。</p></li><li><p>大致的流程，结合wireshark抓包分析，应该可以看的非常清楚</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.本机向local dns请求www.baidu.com</span><br><span class="line">2.local dns向根域请求www.baidu.com，根域返回com.域的服务器IP</span><br><span class="line">3.向com.域请求www.baidu.com，com.域返回baidu.com域的服务器IP</span><br><span class="line">4.向baidu.com请求www.baidu.com，返回cname www.a.shifen.com和a.shifen.com域的服务器IP</span><br><span class="line">5.向root域请求www.a.shifen.com</span><br><span class="line">6.向com.域请求www.a.shife.com</span><br><span class="line">7.向shifen.com请求</span><br><span class="line">8.向a.shifen.com域请求</span><br><span class="line">9.拿到www.a.shifen.com的IP</span><br><span class="line">10.localdns返回本机www.baidu.com cname www.a.shifen.com 以及 www.a.shifen.com的IP</span><br></pre></td></tr></table></figure></li></ol><h3 id="发送http请求报文，第一部https证书过程"><a href="#发送http请求报文，第一部https证书过程" class="headerlink" title="发送http请求报文，第一部https证书过程"></a>发送http请求报文，第一部https证书过程</h3><ol><li>https整个加密流程，</li><li>中间人攻击，</li><li>解决方案，证书验证模式（AFSSLPinningModeCertificate）</li></ol><h3 id="传输层：tcp的三次握手四次挥手过程"><a href="#传输层：tcp的三次握手四次挥手过程" class="headerlink" title="传输层：tcp的三次握手四次挥手过程"></a>传输层：tcp的三次握手四次挥手过程</h3><h3 id="应用层：http协议相关"><a href="#应用层：http协议相关" class="headerlink" title="应用层：http协议相关"></a>应用层：http协议相关</h3><ol><li><p>发送http请求报文</p><p><img src="//chiqtv.cn/2019/05/01/从一道最常见的面试题聊起-浏览器输入网址后发生的故事/2222.png" alt></p></li></ol><p>8种http请求方法，http各个版本，每个版本之间的差异，常见的状态码，5种referrer策略</p><p>响应头各种信息，<a href="https://www.runoob.com/http/http-header-fields.html" target="_blank" rel="noopener">详情说明见</a></p><h3 id="浏览器显示"><a href="#浏览器显示" class="headerlink" title="浏览器显示"></a>浏览器显示</h3><ol><li><p>处理HTML标记并构建DOM树</p></li><li><p>处理CSS标记并构建CSSOM树</p></li><li><p>将DOM和CSSOM合并成一个渲染树</p></li><li><p>根据渲染树来布局，以计算每个节点的几何信息</p></li><li><p>绘制到屏幕上</p></li></ol><p>不同的浏览器内核处理方式还有一些差异，详情可以见：<a href="https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork/" target="_blank" rel="noopener">介绍 WebKit 和 Gecko 内部操作的入门文章</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;从一道最常见的面试题聊起-浏览器输入网址后发生的故事&quot;&gt;&lt;a href=&quot;#从一道最常见的面试题聊起-浏览器输入网址后发生的故事&quot; class=&quot;headerlink&quot; title=&quot;从一道最常见的面试题聊起-浏览器输入网址后发生的故事&quot;&gt;&lt;/a&gt;从一道最常见的面
+      
+    
+    </summary>
+    
+      <category term="面试" scheme="http://chiqtv.cn/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="浏览器" scheme="http://chiqtv.cn/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+      <category term="面试" scheme="http://chiqtv.cn/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>nginx编译参数</title>
@@ -532,32 +559,6 @@
       <category term="iOS" scheme="http://chiqtv.cn/tags/iOS/"/>
     
       <category term="逆向" scheme="http://chiqtv.cn/tags/%E9%80%86%E5%90%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>c++11学习笔记--常量表达式(constexpr)</title>
-    <link href="http://chiqtv.cn/2014/05/09/c-11%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F-constexpr/"/>
-    <id>http://chiqtv.cn/2014/05/09/c-11学习笔记-常量表达式-constexpr/</id>
-    <published>2014-05-09T09:34:01.000Z</published>
-    <updated>2019-04-09T09:39:23.829Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>最新在弄android ndk相关的，惊奇的发现最新的ndk10的版本已经gcc4.9了，我印象中，gcc4.8就支持C++0x11，14的支持，gcc再次走到了llvm的前面，LLVM最新的版本3.4.2应该只支持c++ 11，如果是同样的c++代码我一直认为llvm的效率会明显强过gcc.</p><p>废话不多说，让我们开始学习c++ 11吧，说实话我之前一直都很抗拒c++新的语法，感觉太难接受了，现在看来不熟悉也不行了。</p><p>常量表达式（constexpr）</p><p>常量表达式机制是为了：</p><p>提供了更多的通用的值不发生变化的表达式</p><p>允许用户自定义的类型成为常量表达式</p><p>提供了一种保证在编译期完成初始化的方法（可以在编译时期执行某些函数调用）</p></blockquote><h3 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h3><ol><li><p>修饰常量表达式</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> int var1 = 100;</span><br><span class="line">   </span><br><span class="line"> const int const_var2 = 200;</span><br><span class="line">   </span><br><span class="line"> const int const_var3 = var1;</span><br><span class="line">   </span><br><span class="line"> constexpr int constexpr_var1 = 3 + const_var2 * 4; //成立</span><br><span class="line">   </span><br><span class="line">// constexpr int constexpr_var2 = 3 + var1 * 4; //错误</span><br><span class="line">   </span><br><span class="line">// constexpr int constexpr_var3 = 3 + const_var3 * 4; //错误</span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li><p>修饰函数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">constexpr int Inc(int i) &#123;</span><br><span class="line"></span><br><span class="line">    return i + 1;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">constexpr int a = Inc(1); // 正确</span><br><span class="line"></span><br><span class="line">constexpr int b = Inc(cin.get()); // 错误</span><br><span class="line"></span><br><span class="line">constexpr int c = a * 2 + 1; // 正确，但是如果没有Inc(1)，也是错误的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">constexpr修饰的值要有初始值，和const不同的是初始化的值可以一个表达式，但是这个表达式的值必须是在编译期间就能确定值的。</span><br></pre></td></tr></table></figure><ol start="3"><li><p>修饰类或者结构体</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">struct A &#123;</span><br><span class="line"></span><br><span class="line">    constexpr A(int xx, int yy): x(xx), y(yy) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    int x, y;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">constexpr A aa(1, 2);</span><br><span class="line"></span><br><span class="line">constexpr int ccc = aa.x;</span><br><span class="line"></span><br><span class="line">enum &#123;SIZE_X = aa.x, SIZE_Y = aa.y&#125;;//llvm报错</span><br><span class="line"></span><br><span class="line">Reference to local variable &apos;aa&apos; declared in enclosing function &apos;main&apos;</span><br><span class="line"></span><br><span class="line">如果把constexpr A aa(1, 2);写成全局的就Ok，但是某些编译器并不会报错，我个人认为这个llvm编译器不太合理的地方，如果紧紧是aa是一个局部变量就不允许，但是aa本身的值是在编译的时候就确认了的。</span><br></pre></td></tr></table></figure></li></ol></li></ol><p><strong>个人的理解就是constexpr扩展了常量的含义，从语法上支持更多的常量定义，对比宏又有更好的类型检测和安全性，更强的约束语法带来更好的代码优化。</strong></p><blockquote><p>无意中在csdn论坛上看见大神的一段短话，摘录下来，很值的体会</p><p>constexpr：不光是可以取代模板是某些常量的表达更简洁，其实一个决定性的作用是支持地址类常量。这恰好补上了模板缺失的部分。比如有一个字符串常量”abc”，很自然的可以认为其中的元素也是常量地址，对一个有编译期内容的常量地址取值理论上可以在编译器确定结果，但实际上按旧语法却不能直接拿去做为常量使用而是当作变量。</p><p>union带构造函数、支持带用户定义构造函数的类作为其成员，本意是用来支持某种多型变量，比如根据某个标志决定一个这样的union当前是什么类型。滥用则会导致数据错误。</p><p>noexcept支持推导，而容器元素在支持右值引用的情况下这类推导是很重要的。右值引用可以减少深拷贝的需求，但是在某些情况下会破坏强异常安全保证。利用noexcept推导来决定一个复杂类型作为容器元素的时候到底适合用移动还是适合用普通的拷贝策略来保证强异常安全。比如一个类型如果不支持无异常的移动（自身或任一基类或者数据成员的移动构造函数不支持noexcept，因此需要用到推导），则这个类型不适合移动而只能使用拷贝实现异常安全</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;最新在弄android ndk相关的，惊奇的发现最新的ndk10的版本已经gcc4.9了，我印象中，gcc4.8就支持C++0x11，14的支持，gcc再次走到了llvm的前面，LLVM最新的版本3.4.2应该只支持c++ 11，如果是同样的c++
-      
-    
-    </summary>
-    
-      <category term="C++" scheme="http://chiqtv.cn/categories/C/"/>
-    
-    
-      <category term="c++" scheme="http://chiqtv.cn/tags/c/"/>
     
   </entry>
   
