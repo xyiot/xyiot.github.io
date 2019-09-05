@@ -89,17 +89,17 @@
 <meta property="og:site_name" content="三余无梦生">
 <meta property="og:description" content="国内某一线公司的DDoS防护方案迭代       单点故障 单点资源瓶颈 主要解决办法：程序识别或运营通过调度DNS来解决    LVS+KEEPALIVED+JLB 高效率 易部署 易管理 能充分利用机房资源（所有计算机、以及所有带宽资源） 上行带宽瓶颈 数据报文转发瓶颈 无抵御攻击能力    架构图：DPVS+Firewall+keepalived+JLB 增加了抵御L4攻击的能力 增加了数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/1.png">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/2.png">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/3.png">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/4.png">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/5.png">
-<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/6.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/1.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/2.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/3.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/4.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/5.png">
+<meta property="og:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/6.png">
 <meta property="og:updated_time" content="2019-04-10T12:31:52.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DDoS防护的方案和演进">
 <meta name="twitter:description" content="国内某一线公司的DDoS防护方案迭代       单点故障 单点资源瓶颈 主要解决办法：程序识别或运营通过调度DNS来解决    LVS+KEEPALIVED+JLB 高效率 易部署 易管理 能充分利用机房资源（所有计算机、以及所有带宽资源） 上行带宽瓶颈 数据报文转发瓶颈 无抵御攻击能力    架构图：DPVS+Firewall+keepalived+JLB 增加了抵御L4攻击的能力 增加了数">
-<meta name="twitter:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/1.png">
+<meta name="twitter:image" content="http://chiqtv.cn/2018/10/09/DDoS防护的方案和演进/DDoS防护的方案和演进/1.png">
 
 
 
@@ -364,7 +364,7 @@
 <p>单点资源瓶颈</p>
 <p>主要解决办法：程序识别或运营通过调度DNS来解决</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/1.png" alt></p>
+<p><img src="DDoS防护的方案和演进/1.png" alt></p>
 <blockquote>
 <p>LVS+KEEPALIVED+JLB</p>
 <p>高效率</p>
@@ -375,7 +375,7 @@
 <p>数据报文转发瓶颈</p>
 <p>无抵御攻击能力</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/2.png" alt></p>
+<p><img src="DDoS防护的方案和演进/2.png" alt></p>
 <blockquote>
 <p>架构图：DPVS+Firewall+keepalived+JLB</p>
 <p>增加了抵御L4攻击的能力</p>
@@ -383,25 +383,25 @@
 <p>引入问题：</p>
 <p>开发、调试、部署相对麻烦</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/3.png" alt></p>
+<p><img src="DDoS防护的方案和演进/3.png" alt></p>
 <blockquote>
 <p>架构图：ECMP+DPVS+Firewall+JLB</p>
 <p>解决了上行瓶颈问题</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/4.png" alt></p>
+<p><img src="DDoS防护的方案和演进/4.png" alt></p>
 <blockquote>
 <p>WAN/LAN Anycast +ECMP+Firewall&amp;LoadBalancer（XDP+eBPF）</p>
 <p>机房整体资源充分利用，整体上无明显的缺点</p>
 <p>需要开发很多周边控制程序</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/5.png" alt></p>
+<p><img src="DDoS防护的方案和演进/5.png" alt></p>
 <blockquote>
 <p>WAN/LAN Anycast +ECMP+Firewall（XDP+eBPF）</p>
 <p>机房整体资源利用</p>
 <p>避免引入了故障点（LB，firewall）</p>
 <p>需要开发很多周边控制程序</p>
 </blockquote>
-<p><img src="//chiqtv.cn/2018/10/09/DDoS防护的方案和演进/6.png" alt></p>
+<p><img src="DDoS防护的方案和演进/6.png" alt></p>
 <blockquote>
 <p>个人感受：从框架的迭代进化来看，其实没有什么技术上的难点，用一句很简单的话来说就是，所以99%的计算机问题都可以通过加入一个中间层来解决，和今天的大公司的移动端，后端框架一样，无非是变的的越来越重，越来越层，把问题细分化来解决。</p>
 </blockquote>

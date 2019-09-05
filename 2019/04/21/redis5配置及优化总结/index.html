@@ -89,12 +89,12 @@
 <meta property="og:site_name" content="三余无梦生">
 <meta property="og:description" content="redis5.0配置说明 配置文件中单元大小的解释，不区分大小写  1234567891011# Note on units: when memory size is needed, it is possible to specify# it in the usual form of 1k 5GB 4M and so forth:## 1k =&amp;gt; 1000 bytes# 1kb =&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chiqtv.cn/2019/04/21/redis5配置及优化总结/1111.png">
+<meta property="og:image" content="http://chiqtv.cn/2019/04/21/redis5配置及优化总结/redis5配置及优化总结/1111.png">
 <meta property="og:updated_time" content="2019-04-23T07:11:14.991Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis配置及优化总结">
 <meta name="twitter:description" content="redis5.0配置说明 配置文件中单元大小的解释，不区分大小写  1234567891011# Note on units: when memory size is needed, it is possible to specify# it in the usual form of 1k 5GB 4M and so forth:## 1k =&amp;gt; 1000 bytes# 1kb =&amp;gt;">
-<meta name="twitter:image" content="http://chiqtv.cn/2019/04/21/redis5配置及优化总结/1111.png">
+<meta name="twitter:image" content="http://chiqtv.cn/2019/04/21/redis5配置及优化总结/redis5配置及优化总结/1111.png">
 
 
 
@@ -437,7 +437,7 @@
 <ol start="18">
 <li><p>DOCKER下的集群配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># * cluster-announce-ip //实际为各节点网卡分配ip </span><br><span class="line"># * cluster-announce-port  //节点映射端口</span><br><span class="line"># * cluster-announce-bus-port //集群总线端口</span><br><span class="line"></span><br><span class="line">在Docker环境中，如果使用的不是host网络模式，在容器内部的IP和PORT都是隔离的，那么客户端和其他节点无法通过节点公布的IP和PORT建立连接，增加这三个配置，Redis节点会将配置中的这些IP和PORT告知客户端或其他节点。而这些IP和PORT是通过Docker转发到容器内的临时IP和PORT的。</span><br></pre></td></tr></table></figure>
-<p><img src="//chiqtv.cn/2019/04/21/redis5配置及优化总结/1111.png" alt="1111"></p>
+<p><img src="redis5配置及优化总结/1111.png" alt="1111"></p>
 </li>
 <li><p>慢查询</p>
 <p>slowlog-log-slower-than 10000</p>

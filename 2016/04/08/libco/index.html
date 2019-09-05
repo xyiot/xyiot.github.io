@@ -89,13 +89,13 @@
 <meta property="og:site_name" content="三余无梦生">
 <meta property="og:description" content="co_create  初始化相关123456int co_create( stCoRoutine_t **ppco,const stCoRoutineAttr_t *attr,			   pfn_co_routine_t pfn,void *arg )static stCoRoutineEnv_t* g_arrCoEnvPerThread[ 204800 ] = &amp;#123; 0 &amp;#125;;v">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chiqtv.cn/2016/04/08/libco/illustration-1.png">
-<meta property="og:image" content="http://chiqtv.cn/2016/04/08/libco/illustration-2.png">
+<meta property="og:image" content="http://chiqtv.cn/2016/04/08/libco/libco/illustration-1.png">
+<meta property="og:image" content="http://chiqtv.cn/2016/04/08/libco/libco/illustration-2.png">
 <meta property="og:updated_time" content="2019-04-09T06:20:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="libco">
 <meta name="twitter:description" content="co_create  初始化相关123456int co_create( stCoRoutine_t **ppco,const stCoRoutineAttr_t *attr,			   pfn_co_routine_t pfn,void *arg )static stCoRoutineEnv_t* g_arrCoEnvPerThread[ 204800 ] = &amp;#123; 0 &amp;#125;;v">
-<meta name="twitter:image" content="http://chiqtv.cn/2016/04/08/libco/illustration-1.png">
+<meta name="twitter:image" content="http://chiqtv.cn/2016/04/08/libco/libco/illustration-1.png">
 
 
 
@@ -377,9 +377,9 @@
 <p>co_resume</p>
 <p>同时创建的协程第一次启动也是使用这个接口，并且在第一次启动的时候会初始化特殊的coctx_t结构，在协程执行结束后，会自动设置cEnd=1，同时将自己yield出去</p>
 <p>栈帧stack frame layout：</p>
-<p><img src="//chiqtv.cn/2016/04/08/libco/illustration-1.png" alt></p>
+<p><img src="libco/illustration-1.png" alt></p>
 <p>调用子函数时，父函数从右到左将函数入栈，最后将返回地址入栈保存后，跳到子函数的地址执行。子函数压栈保存父函数的 %ebp，并将 %ebp 设置为当前 %esp。子函数通过 %ebp + 4 读取参数1，%ebp + 8 读取参数2</p>
-<p><img src="//chiqtv.cn/2016/04/08/libco/illustration-2.png" alt></p>
+<p><img src="libco/illustration-2.png" alt></p>
 <p>libco程序的第一个协程呢，假如第一个协程yield时，CPU控制权让给谁呢？关于这个问题，我们首先要明白这“第一个”协程是什么。实际上，libco的第一个协程，即执行main函数的协程，是一个特殊的协程。这个协程又可以称作主协程，它负责协调其他协程的调度执行（后文我们会看到，还有网络 </p>
 <p>I/O以及定时事件的驱动），它自己则永远不会yield，不会主动让出 </p>
 <p>CPU。不让出CPU，不等于说它一直霸占着CPU。我们知道CPU执行权有两种转移途径，一是通过yield让给调用者，其二则是resume启动其他协程运行。</p>
