@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="三余无梦生">
 <meta property="og:description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/Redis4源码阅读学习-2/1.png">
-<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/Redis4源码阅读学习-2/2.png">
-<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/Redis4源码阅读学习-2/aeEventLoop.png">
+<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/1.png">
+<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/2.png">
+<meta property="og:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/aeEventLoop.png">
 <meta property="og:updated_time" content="2019-04-09T11:30:20.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis4源码阅读学习-2">
 <meta name="twitter:description" content="redis客户端和服务器的相关代码ae.c（Redis 的事件处理器实现（基于 Reactor 模式）） handle_events() 在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法 select对应不同平台的io复用的函数库 handl">
-<meta name="twitter:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/Redis4源码阅读学习-2/1.png">
+<meta name="twitter:image" content="http://chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/1.png">
 
 
 
@@ -353,7 +353,7 @@
       
 
       
-        <h1 id="redis客户端和服务器的相关代码"><a href="#redis客户端和服务器的相关代码" class="headerlink" title="redis客户端和服务器的相关代码"></a>redis客户端和服务器的相关代码</h1><h2 id="ae-c（Redis-的事件处理器实现（基于-Reactor-模式））"><a href="#ae-c（Redis-的事件处理器实现（基于-Reactor-模式））" class="headerlink" title="ae.c（Redis 的事件处理器实现（基于 Reactor 模式））"></a>ae.c（Redis 的事件处理器实现（基于 Reactor 模式））</h2><p><img src="Redis4源码阅读学习-2/1.png" alt></p>
+        <h1 id="redis客户端和服务器的相关代码"><a href="#redis客户端和服务器的相关代码" class="headerlink" title="redis客户端和服务器的相关代码"></a>redis客户端和服务器的相关代码</h1><h2 id="ae-c（Redis-的事件处理器实现（基于-Reactor-模式））"><a href="#ae-c（Redis-的事件处理器实现（基于-Reactor-模式））" class="headerlink" title="ae.c（Redis 的事件处理器实现（基于 Reactor 模式））"></a>ae.c（Redis 的事件处理器实现（基于 Reactor 模式））</h2><p><img src="//chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/1.png" alt></p>
 <p>handle_events()</p>
 <p>在Redis中，对于文件事件，相应的处理函数为Ae.c/aeProcessEvents</p>
 <p>register_handler/remove_handler 对应Redis中，相关的处理函数也在Ae.c文件中方法</p>
@@ -404,11 +404,11 @@ for (j = 0; j &lt; numevents; j++) {
 <li>另一种是非定时事件，只会在某个时间点执行一次；</li>
 </ul>
 <p>aeProcessEvents -&gt;processTimeEvents</p>
-<p><img src="Redis4源码阅读学习-2/2.png" alt></p>
+<p><img src="//chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/2.png" alt></p>
 <h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>1时间事件分为定时时间和周期事件，周期事件serverCron  100毫秒</p>
 <p>2时间事件和文件事件合并到一起处理，分开；</p>
 <p>3.时间事件晚于预设</p>
-<p><img src="Redis4源码阅读学习-2/aeEventLoop.png" alt></p>
+<p><img src="//chiqtv.cn/2019/02/09/Redis4源码阅读学习-2/aeEventLoop.png" alt></p>
 <h4 id="networking-c"><a href="#networking-c" class="headerlink" title="networking.c"></a>networking.c</h4><p>readQueryFromClient   processCommand</p>
 <p>clientsCronHandleTimeout //keep_alive，ping,异常处理</p>
 <p>三类方法</p>
