@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="中台,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三余无梦生" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="##企业中台理解学习笔记 建设之前考虑的四个问题 中台建设的愿景是什么？  中台只是解决方案而已，并不是问题。 建设之前明确建设的目标，对企业战略规划，对业务的价值 如何判断赶时髦的建设   用户群体？  用户是谁，相关利益干系人有哪些  如何平衡组织重构，利益职责分配的问题 如何兼顾各方利益和解决企业管理层对公司长期生存与可持续反正的恐慌与焦虑问题。     成本问题  谁来成本建设成本，业务部">
+<meta name="keywords" content="中台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="企业中台理解学习笔记">
+<meta property="og:url" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/index.html">
+<meta property="og:site_name" content="三余无梦生">
+<meta property="og:description" content="##企业中台理解学习笔记 建设之前考虑的四个问题 中台建设的愿景是什么？  中台只是解决方案而已，并不是问题。 建设之前明确建设的目标，对企业战略规划，对业务的价值 如何判断赶时髦的建设   用户群体？  用户是谁，相关利益干系人有哪些  如何平衡组织重构，利益职责分配的问题 如何兼顾各方利益和解决企业管理层对公司长期生存与可持续反正的恐慌与焦虑问题。     成本问题  谁来成本建设成本，业务部">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/111.jpg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/333.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/444.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/555.jpg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/666.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/777.jpg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/888.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/rrr.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/ttt.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/www.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/qqq.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/eee.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/000.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/999.jpeg">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/aaa.png">
+<meta property="og:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/222.jpg">
+<meta property="og:updated_time" content="2019-10-11T01:27:25.295Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="企业中台理解学习笔记">
+<meta name="twitter:description" content="##企业中台理解学习笔记 建设之前考虑的四个问题 中台建设的愿景是什么？  中台只是解决方案而已，并不是问题。 建设之前明确建设的目标，对企业战略规划，对业务的价值 如何判断赶时髦的建设   用户群体？  用户是谁，相关利益干系人有哪些  如何平衡组织重构，利益职责分配的问题 如何兼顾各方利益和解决企业管理层对公司长期生存与可持续反正的恐慌与焦虑问题。     成本问题  谁来成本建设成本，业务部">
+<meta name="twitter:image" content="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/111.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/">
+
+
+
+
+
+  <title>企业中台理解学习笔记 | 三余无梦生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三余无梦生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://chiqtv.cn/2019/09/16/企业中台理解学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三鱼">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/my.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三余无梦生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">企业中台理解学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-16T08:34:05+08:00">
+                2019-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中台/" itemprop="url" rel="index">
+                    <span itemprop="name">中台</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##企业中台理解学习笔记</p>
+<h3 id="建设之前考虑的四个问题"><a href="#建设之前考虑的四个问题" class="headerlink" title="建设之前考虑的四个问题"></a>建设之前考虑的四个问题</h3><ol>
+<li><p>中台建设的愿景是什么？</p>
+<ul>
+<li>中台只是解决方案而已，并不是问题。</li>
+<li>建设之前明确建设的目标，对企业战略规划，对业务的价值</li>
+<li>如何判断赶时髦的建设</li>
+</ul>
+</li>
+<li><p>用户群体？</p>
+<ul>
+<li><p>用户是谁，相关利益干系人有哪些</p>
+<ul>
+<li>如何平衡组织重构，利益职责分配的问题</li>
+<li>如何兼顾各方利益和解决企业管理层对公司长期生存与可持续反正的恐慌与焦虑问题。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>成本问题</p>
+<ul>
+<li>谁来成本建设成本，业务部门众筹还是战略部门投资建设</li>
+</ul>
+</li>
+<li><p>如何判断建设的结果</p>
+<ul>
+<li>考核指标问题，参考其他公司，结合具体的业务</li>
+</ul>
+</li>
+</ol>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/111.jpg" alt></p>
+<h3 id="中台落地的方法论D4模型"><a href="#中台落地的方法论D4模型" class="headerlink" title="中台落地的方法论D4模型"></a>中台落地的方法论D4模型</h3><ol>
+<li><p>第一个阶段是Discovery，企业战略分解及现状调研</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/333.jpeg" alt="333"></p>
+</li>
+</ol>
+<ul>
+<li><p>回答要不要建中台、建哪些中台、谁先建谁后建这些问题</p>
+<ul>
+<li><p>由外到内：行业与竞争对手分析，常见方法：五力模型，SWOT，商业模式画布，竞争对手产品线分析</p>
+</li>
+<li><p>自上而下：企业战略分解</p>
+<ul>
+<li><p>企业战略就可以简化理解成：结合企业自身的能力与其所处的环境，到底需要采取什么样的举措，才能实现企业预定的愿景和目标呢？</p>
+</li>
+<li><p>而企业战略分解就可以简化理解成：结合企业各部门自身的能力与其所处的环境，到底需要采取什么样的举措，才能实现企业预定的愿景和目标呢？</p>
+</li>
+<li><p>建立从愿景、目标到投资举措自上而下的对齐</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/444.jpeg" alt></p>
+</li>
+</ul>
+</li>
+<li><p>自下而上：现状调研与分析</p>
+<ul>
+<li><p>充分尊重过去遇到的所有问题，收集汇总痛点</p>
+</li>
+<li><p>跳出过去的限制，重新从业务出发，从用户出发，去重新探索基于新技术、新架构下的一些新的可能性。</p>
+</li>
+<li><p>工具和实践：高层访谈、干系人地图、组织架构分析、战略设计思维、业务架构现状梳理、用户旅程、服务蓝图、领域驱动设计、应用系统现状梳理、技术架构现状梳理等等。</p>
+</li>
+<li><p>建议</p>
+<ul>
+<li>先完成自上而下的企业战略分解，再开展自下而上的现状调研。因为做完战略分解，我们已经对于公司的行业、业务、愿景、战略已经有了一些了解，再开展调研的时候就会有个全局的把控，对于粒度和深度都更容易拿捏。</li>
+<li>做好充分的准备，能够提前通过阅读资料和小范围调研完成的内容就提前完成。</li>
+<li>制定详细的计划，可以按照现状调研的总时间倒推梳理的范围和粒度。如果时间足够，可以用两天的时间梳理一条业务线的业务架构，这样梳理就可以深入一些。但如果只有半天，则粒度可以适当放粗，先保证有一个全局业务视图。</li>
+<li>在判断不好的时候，可以先粗一些，如果最后还有时间，也可以再做一轮调研向下再展开一层。</li>
+<li>建议刚开始做的时候，可以粒度粗一些，不要过早陷入细节，不过粒度到底如何控制确实需要对于公司战略以及业务有深入理解，也是最见功夫的地方。在判断不好的时候，可以先粗一些，如果最后还有时间，也可以再做一轮调研向下再展开一层。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>第二个阶段是Define 企业数字化全景规划</p>
+<ul>
+<li><p>结合自上而下企业战略分解的举措和自下而上现有业务架构梳理和分析的问题及痛点，重新设计新的业务架构，并进一步推导出其它的相关的架构设计。</p>
+</li>
+<li><p>引入了事件风暴、DDD工作坊等协作互动形式整个过程各个关键角色充分讨论，协作共创，力争在过程的轻量前提下，还能保证结果的准确与一致。</p>
+</li>
+<li><p>难点，如何从企业整体的视角，更准确地识别出多业务线之间的共性业务元素</p>
+</li>
+<li><p>中台复用的能力类型到底有几种？</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/555.jpg" alt="555"></p>
+<ul>
+<li><p>四类共性能力：业务数据、业务功能、业务流程以及通用的技术能力</p>
+</li>
+<li><p>透过业务流程识别出有哪些类似的能力复用场景：领域驱动设计</p>
+</li>
+<li><p>领域驱动设计结合事件风暴（EventStorming）这两个工具，通过工作坊的形式来对业务流程背后的问题空间和解空间做进一步的分析，识别出关键聚合，再通过跨业务线的问题域叠加投影，找出大家共同关注的问题空间和聚合，从而继续扩展来做共性场景和能力识别。</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/666.jpeg" alt="666"></p>
+</li>
+</ul>
+</li>
+<li><p>中台和微服务的区别与联系</p>
+<ul>
+<li>中台解决的是业务领域的业务（数据、功能、流程）复用的问题，而微服务架构作为一种轻量级分布式技术架构，解决的是技术领域的“组件编译时依赖”造成的问题。</li>
+<li>微服务的核心关键点是，能独立被交付部署。</li>
+<li>业务中台和微服务抽象的层次完全不同</li>
+<li>微服务架构运行时依赖的低耦合特性，通常被用于实现业务中台中不同能力单元的团队分离、技术分离、交付周期分离等特性而已。</li>
+</ul>
+</li>
+<li><p>回顾平台型企业架构的规划过程</p>
+<ul>
+<li><ol>
+<li>首先通过各条业务线的现有业务架构分析，再结合识别的痛点做的根因分析，做业务架构上的改进与设计，从而对于现有的业务架构进行改进，设计出新的改进后的业务架构，解决现在痛点背后的问题。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>同时还要参考战略分解后对于各条业务线的目标和举措，融入To-Be 业务架构的设计当中，使新的业务架构设计同时匹配企业战略要求以及解决短期战术痛点。</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>对于改进后的业务架构，做跨业务线的比对和分析，就能帮助我们发现不同业务线的业务功能及业务流程的重叠情况，为后续中台建设的必要性判断提供业务层面上的支撑和输入。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>使用领域驱动设计（DDD）的战略部分，针对于每条业务线，做问题域和限界上下文分析，以及关键聚合的识别，从而试图穿越流程，从领域的角度深入一层审视业务的本质，到底是在解决哪些问题空间的问题，并通过问题域的划分（核心、通用、支撑），区分问题空间对于企业的重要性。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>类似于业务架构，同样对于各条业务线分析出来的领域分析视图，做横向比对和投影，从领域层识别不同的业务线中的问题域、限界上下文以及聚合的重合度。这么可能比较抽象，你可以理解成类似于将几张半透明的画摞在一起，来找相交部分一样。帮助我们识别业务数据以及业务模式（功能 + 流程）上的深层次共性能力。</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>结合现有的业务架构及应用架构，做各条线的应用架构设计改进，并通过 As-is 和 To-Be 的应用架构做 Gap 分析，产出 IT 建设的具体机会点，这样的机会点就类似于新建一个 CRM 系统之类的。</li>
+</ol>
+</li>
+<li><ol start="7">
+<li>再基于跨域的业务架构分析和跨域的领域分析，讨论判断多条业务线的业务重合度，并详细识别重合更多是在业务模式级别的重合（出行、电商）、业务功能级别的重合（登录，购物车）、还是业务领域（用户数据打通）级别的重合。基于讨论结果，决定是否有必要引入中台层建设，以及根据重合情况，详细展开规划中台层的应用架构。</li>
+</ol>
+</li>
+<li><ol start="8">
+<li><p>最后再分析当前现状与 To-Be 的最终规划之间的差距，产出具体的机会点列表，并且基于多维度（常见的例如战略重要性、紧急程度、成本、资源就绪情况、技术就绪情况、风险、痛点 Mapping 等）做优先级排序，产生最终的路线图。</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/777.jpg" alt="777"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三个阶段是Design中台的规划与设计</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/888.jpeg" alt></p>
+<ul>
+<li><p>确定中台产品愿景</p>
+</li>
+<li><p>用电梯演讲的方式来发散和收敛产品的愿景</p>
+</li>
+<li><p>愿景的价值和难点就在于充分收敛，后期遇事不决看愿景</p>
+</li>
+<li><p>确定业务梳理范围，中台产品的愿景确定后，下一步就需要进行细粒度的业务架构梳理，抽取共性，识别中台产品的具体需求了。</p>
+</li>
+<li><p>细粒度业务梳理，小心因为历史原因导致的避免伪需求。</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/rrr.jpeg" alt="rrr"></p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/ttt.jpeg" alt="ttt"></p>
+</li>
+<li><p>业务梳理过程中大量地采用了基于设计思维，结合用户体验地图（User Journey Map）和服务蓝图（Service Map）的方式。回到业务本身，从问题域出发，以用户为中心，进行用户体验设计和业务服务蓝图的梳理。</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/www.jpeg" alt="www"></p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/qqq.jpeg" alt="qqq"></p>
+</li>
+<li><p>业务中台需求梳理后，确定 MVP（Minimum Viable Product，最小可用品）</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/eee.jpeg" alt="eee"></p>
+</li>
+<li><p>开始中台建设之前需要明确的两点:运营计划和度量指标。</p>
+</li>
+<li><p>运营前置：制定迭代计划及接入计划</p>
+</li>
+<li><p>度量前置：定义验证指标,</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/000.jpeg" alt="000"></p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/999.jpeg" alt="999"></p>
+</li>
+</ul>
+</li>
+<li><p>第四个阶段是Delivery中台的建设与接入</p>
+<ul>
+<li><p>中台人员能力模型</p>
+</li>
+<li><p>精益产品研发流程结合敏捷开发流程，小批量快速开发产品，快速引入度量，基于测量的数据快速对于之前的需求假设进行验证和认知，并基于此做快速的调整。</p>
+</li>
+<li><p>中台的运营、治理与演进</p>
+</li>
+<li><p>中台产品的用户划分</p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/aaa.png" alt="aaa"></p>
+<p><img src="//chiqtv.cn/2019/09/16/企业中台理解学习笔记/222.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="资料总结"><a href="#资料总结" class="headerlink" title="资料总结"></a>资料总结</h3><ul>
+<li><p>书籍</p>
+<ol>
+<li>中台概念<ul>
+<li>《企业 IT 架构转型之道 阿里巴巴中台战略思想与架构实战》</li>
+<li>《中台战略：中台建设与数字商业》</li>
+</ul>
+</li>
+<li>战略与变革<ul>
+<li>《论大战略》</li>
+<li>《战略的本质》</li>
+<li>《领导变革》</li>
+<li>《商业模式新生代》</li>
+<li>《系统思考》</li>
+</ul>
+</li>
+<li>平台型组织<ul>
+<li>《释放潜能：平台型组织的进化路线图》</li>
+<li>《重塑海尔：可复制的组织进化路径》</li>
+<li>《赋能：打造应对不确定性的敏捷团队》</li>
+</ul>
+</li>
+<li>企业架构方法<ul>
+<li>《TOGAF 标准 9.1 版》</li>
+<li>《企业级业务架构设计：方法论与实践》</li>
+<li>《决胜 B 端：产品经理升级之路》</li>
+</ul>
+</li>
+<li>设计思维（DesignThinking）<ul>
+<li>《战略设计思维》</li>
+<li>《创新设计思维》</li>
+</ul>
+</li>
+<li>领域驱动设计<ul>
+<li>《领域驱动设计：软件核心复杂性应对之道》</li>
+<li>《实现领域驱动设计》</li>
+<li>《领域驱动设计模式、原理与实践》</li>
+</ul>
+</li>
+<li>敏捷 &amp; 精益<ul>
+<li>《精益思想》</li>
+<li>《精益创业》</li>
+<li>《精益企业：高效能组织如何规模化创新》</li>
+<li>《看板方法：科技企业渐进变革成功之道》</li>
+<li>《持续交付：发布可靠软件的系统方法》</li>
+</ul>
+</li>
+<li>架构演进<ul>
+<li>《演进式架构》</li>
+<li>《架构整洁之道》</li>
+<li>《微服务设计》</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/中台/" rel="tag"># 中台</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/16/Mac下编译RedisDesktopManager/" rel="next" title="Mac下编译RedisDesktopManager">
+                <i class="fa fa-chevron-left"></i> Mac下编译RedisDesktopManager
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/my.jpg" alt="三鱼">
+            
+              <p class="site-author-name" itemprop="name">三鱼</p>
+              <p class="site-description motion-element" itemprop="description">挥笔点墨卷再开，醉仰观岚景悠哉。倾向兰曰敬邀曰，叹矣自笑一字呆。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/xyiot" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:softstarxy@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.weibo.com/5419866199/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#建设之前考虑的四个问题"><span class="nav-number">1.</span> <span class="nav-text">建设之前考虑的四个问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中台落地的方法论D4模型"><span class="nav-number">2.</span> <span class="nav-text">中台落地的方法论D4模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资料总结"><span class="nav-number">3.</span> <span class="nav-text">资料总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三鱼</span>
+  
+</div>
+
+
+
+
+  <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize("");
+    }
+  </script>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+     <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
