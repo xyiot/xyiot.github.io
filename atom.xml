@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://chiqtv.cn/"/>
-  <updated>2019-10-11T01:27:25.295Z</updated>
+  <updated>2019-10-25T03:01:01.279Z</updated>
   <id>http://chiqtv.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DDD领域驱动设计基础篇</title>
+    <link href="http://chiqtv.cn/2019/10/10/DDD%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
+    <id>http://chiqtv.cn/2019/10/10/DDD领域驱动设计基础篇/</id>
+    <published>2019-10-10T06:48:37.000Z</published>
+    <updated>2019-10-25T03:01:01.279Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="DDD领域驱动设计基础篇"><a href="#DDD领域驱动设计基础篇" class="headerlink" title="DDD领域驱动设计基础篇"></a>DDD领域驱动设计基础篇</h3><ol><li><p>如何拆分微服务？</p><ul><li>确定了业务边界和应用边界</li></ul></li><li><p>如何确定业务边界和应用边界？</p><ul><li>通过领域驱动设计方法定义领域模型，从而确定业务和应用边界，保证业务模型与代码模型的一致性。</li></ul></li><li><p>什么领域驱动设计</p><ul><li>是一种架构设计方法论,通过边界划分将复杂业务领域简单化，设计出清晰的领域和应用边界，可以很容易地实现架构演进,核心是围绕业务概念构建领域模型来控制业务的复杂性，以解决软件难以理解，难以演进的问题。</li></ul></li><li><p>DDD 与微服务的关系</p><ul><li><p>DDD 主要关注：从业务领域视角划分领域边界，构建通用语言进行高效沟通，通过业务抽象，建立领域模型，维持业务和代码的逻辑一致性</p></li><li><p>微服务主要关注：运行时的进程间通信、容错和故障隔离，实现去中心化数据管理和去中心化服务治理，关注微服务的独立开发、测试、构建和部署</p></li><li><p>一个关心技术层面，一个关心业务领域层面，但是设计思路要从业务出发。</p></li></ul></li><li><p>如何使用ddd</p><ul><li>包括战略设计和战术设计两部分</li></ul></li><li><p>什么是战略设计？</p><ul><li>战略设计主要从业务视角出发，建立业务领域模型，划分领域边界，建立通用语言的限界上下文，限界上下文可以作为微服务设计的参考边界。</li></ul></li><li><p>什么是战术设计？</p></li></ol><ul><li>战术设计则从技术视角出发，侧重于领域模型的技术实现，完成软件开发和落地，包括：聚合根、实体、值对象、领域服务、应用服务和资源库等代码逻辑的设计和实现。</li></ul><ol start="8"><li>如何进行战略设计的？</li></ol><ul><li>建立领域模型，领域模型可以用于指导微服务的设计和拆分。事件风暴是建立领域模型的主要方法，它是一个从发散到收敛的过程。它通常采用用例分析、场景分析和用户旅程分析，尽可能全面不遗漏地分解业务领域，并梳理领域对象之间的关系，这是一个发散的过程。事件风暴过程会产生很多的实体、命令、事件等领域对象，我们将这些领域对象从不同的维度进行聚类，形成如聚合、限界上下文等边界，建立领域模型，这就是一个收敛的过程。</li></ul><ol start="9"><li><p>如何划定领域模型和微服务的边界？</p><ul><li><p>第一步：在事件风暴中梳理业务过程中的用户操作、事件以及外部依赖关系等，根据这些要素梳理出领域实体等领域对象。</p></li><li><p>第二步：根据领域实体之间的业务关联性，将业务紧密相关的实体进行组合形成聚合，同时确定聚合中的聚合根、值对象和实体。在这个图里，聚合之间的边界是第一层边界，它们在同一个微服务实例中运行，这个边界是逻辑边界，所以用虚线表示。</p></li><li><p>第三步：根据业务及语义边界等因素，将一个或者多个聚合划定在一个限界上下文内，形成领域模型。在这个图里，限界上下文之间的边界是第二层边界，这一层边界可能就是未来微服务的边界，不同限界上下文内的领域逻辑被隔离在不同的微服务实例中运行，物理上相互隔离，所以是物理边界，边界之间用实线来表示。</p></li></ul></li></ol><p><img src="//chiqtv.cn/2019/10/10/DDD领域驱动设计基础篇/1111.jpg" alt="1111"></p><ol start="10"><li><p>领域建模核心？</p><ul><li>将问题域逐级细分，来降低业务理解和系统实现的复杂度。通过领域细分，逐步缩小微服务需要解决的问题域，构建合适的领域模型，而领域模型映射成系统就是微服务了。核心域、通用域和支撑域。</li></ul></li><li><p>什么是通用语言?</p><ul><li>在事件风暴过程中，通过团队交流达成共识的，能够简单、清晰、准确描述业务涵义和规则的语言就是通用语言</li></ul></li><li><p>什么是限界上下文？</p><ul><li>为了避免同样的概念或语义在不同的上下文环境中产生歧义，DDD 在战略设计上提出了“限界上下文”这个概念，用来确定语义所在的领域边界。限界就是领域的边界，而上下文则是语义环境。</li></ul></li><li><p>实体和值对象：领域模型的基础单元</p><ul><li>在领域建模时，可以将部分对象设计为值对象，保留对象的业务涵义，同时又减少了实体的数量；在数据建模时，我们可以将值对象嵌入实体，减少实体表的数量，简化数据库设计。</li><li>发挥对象的威力，就需要优先做领域建模，弱化数据库的作用，只把数据库作为一个保存数据的仓库即可。即使违反数据库设计原则，也不用大惊小怪，只要业务能够顺利运行，就没什么关系</li><li>DDD 提倡从领域模型设计出发，而不是先设计数据模型。</li><li>实体和值对象都是领域模型的成员，实体是业务唯一性的载体，是个富对象，包含业务逻辑和唯一标识。值对象是属性的集合，没有唯一标识，只是数据的容器，没有业务逻辑。值对象是实体的一部分，为了简化设计，将部分相关属性抽离成值对象。如果值对象变动，原来的值对象可以直接丢弃。也可以理解为值对象是当时数据的快照，只是当时的状态。值对象过多会导致业务的缺失，影响查询性能。具体哪些属性可以作为值对象存在要具体问题具体分析。</li><li>实体可修改，值对象不可修改，只可以整体替换。实体是实实在在的业务对象，值对象只是对对象的描述。值对象依附以实体，实体没了值对象也就没了。</li><li>实体具有唯一性, 表现为具有唯一标识, 在实体对象的整个生命周期内不变，即使除了唯一标识外的其它所有属性信息都发生了变化, 这个对象始终代表着同一对象。 而值对象不独立存在, 一般依附于实体而存在, 没有唯一标识, 或者说值对象的全部属性合在一起作为唯一标识, 所以当任何属性发生变化时, 都意味着新的值对象产生, 实践中当值对象信息发生变化时一般直接使用新的值对象来替换原来的值对象</li><li>实体可以具有业务行为和逻辑, 而值对象没有, 值对象仅作为信息的载体出现.</li><li>值对象可能是实体的副本. 例如: 在电商系统中, 收货人地址管理就是一个实体(可以单独修改收货人的具体信息，例如: 名称、手机号、地址等), 而订单中的收货人就是一个值对象, 订单中的收货人是收货人地址的副本, 在订单创建后其信息就不能修改, 而是通过替换新的收货人地址的方式来整体替换. 这种整体替换的方式修改值对象, 是一种约定, 而非技术原因。</li><li>实体对应到数据库中, 会以具体表的形式体现, 而值对象不一定有具体的表对应, 可能直接存储在实体表中。</li></ul></li><li>什么是聚合<ul><li>聚合就是由业务和逻辑紧密关联的实体和值对象组合而成的，聚合是数据修改和持久化的基本单元，每一个聚合对应一个仓储，实现数据的持久化。</li><li>聚合有一个聚合根和上下文边界，这个边界根据业务单一职责和高内聚原则，定义了聚合内部应该包含哪些实体和值对象，而聚合之间的边界是松耦合的。按照这种方式设计出来的微服务很自然就是“高内聚、低耦合”的。</li><li>聚合在 DDD 分层架构里属于领域层，领域层包含了多个聚合，共同实现核心业务逻辑。聚合内实体以充血模型实现个体业务能力，以及业务逻辑的高内聚。跨多个实体的业务逻辑通过领域服务来实现，跨多个聚合的业务逻辑通过应用服务来实现。比如有的业务场景需要同一个聚合的 A 和 B 两个实体来共同完成，我们就可以将这段业务逻辑用领域服务来实现；而有的业务逻辑需要聚合 C 和聚合 D 中的两个服务共同完成，这时你就可以用应用服务来组合这两个服务。</li></ul></li><li>什么是聚合根<ul><li>聚合根的主要目的是为了避免由于复杂数据模型缺少统一的业务规则控制，而导致聚合、实体之间数据不一致性的问题。</li><li>传统数据模型中的每一个实体都是对等的，如果任由实体进行无控制地调用和数据修改，很可能会导致实体之间数据逻辑的不一致。而如果采用锁的方式则会增加软件的复杂度，也会降低系统的性能。</li><li>如果把聚合比作组织，那聚合根就是这个组织的负责人。聚合根也称为根实体，它不仅是实体，还是聚合的管理者。</li><li>首先它作为实体本身，拥有实体的属性和业务行为，实现自身的业务逻辑。</li><li>其次它作为聚合的管理者，在聚合内部负责协调实体和值对象按照固定的业务规则协同完成共同的业务逻辑。</li><li>最后在聚合之间，它还是聚合对外的接口人，以聚合根 ID 关联的方式接受外部任务和请求，在上下文内实现聚合之间的业务协同。也就是说，聚合之间通过聚合根 ID 关联引用，如果需要访问其它聚合的实体，就要先访问聚合根，再导航到聚合内部实体，外部对象不能直接访问聚合内实体。</li></ul></li><li><p>怎样设计聚合？</p><ul><li><p>DDD 领域建模通常采用事件风暴，它通常采用用例分析、场景分析和用户旅程分析等方法，通过头脑风暴列出所有可能的业务行为和事件，然后找出产生这些行为的领域对象，并梳理领域对象之间的关系，找出聚合根，找出与聚合根业务紧密关联的实体和值对象，再将聚合根、实体和值对象组合，构建聚合。</p></li><li><p>第 1 步：采用事件风暴，根据业务行为，梳理出在投保过程中发生这些行为的所有的实体和值对象，比如投保单、标的、客户、被保人等等。</p></li><li><p>第 2 步：从众多实体中选出适合作为对象管理者的根实体，也就是聚合根。判断一个实体是否是聚合根，你可以结合以下场景分析：是否有独立的生命周期？是否有全局唯一 ID？是否可以创建或修改其它对象？是否有专门的模块来管这个实体。图中的聚合根分别是投保单和客户实体。</p></li><li><p>第 3 步：根据业务单一职责和高内聚原则，找出与聚合根关联的所有紧密依赖的实体和值对象。构建出 1 个包含聚合根（唯一）、多个实体和值对象的对象集合，这个集合就是聚合。在图中我们构建了客户和投保这两个聚合。</p></li><li><p>第 4 步：在聚合内根据聚合根、实体和值对象的依赖关系，画出对象的引用和依赖模型。这里我需要说明一下：投保人和被保人的数据，是通过关联客户 ID 从客户聚合中获取的，在投保聚合里它们是投保单的值对象，这些值对象的数据是客户的冗余数据，即使未来客户聚合的数据发生了变更，也不会影响投保单的值对象数据。从图中我们还可以看出实体之间的引用关系，比如在投保聚合里投保单聚合根引用了报价单实体，报价单实体则引用了报价规则子实体。</p></li><li><p>第 5 步：多个聚合根据业务语义和上下文一起划分到同一个限界上下文内。</p><p><img src="//chiqtv.cn/2019/10/10/DDD领域驱动设计基础篇/2222.png" alt></p></li></ul></li><li><p>聚合设计原则</p><ul><li><p>在一致性边界内建模真正的不变条件。聚合用来封装真正的不变性，而不是简单地将对象组合在一起。聚合内有一套不变的业务规则，各实体和值对象按照统一的业务规则运行，实现对象数据的一致性，边界之外的任何东西都与该聚合无关，这就是聚合能实现业务高内聚的原因。</p></li><li><p>设计小聚合。如果聚合设计得过大，聚合会因为包含过多的实体，导致实体之间的管理过于复杂，高频操作时会出现并发冲突或者数据库锁，最终导致系统可用性变差。而小聚合设计则可以降低由于业务过大导致聚合重构的可能性，让领域模型更能适应业务的变化。</p></li><li><p>通过唯一标识引用其它聚合。聚合之间是通过关联外部聚合根 ID 的方式引用，而不是直接对象引用的方式。外部聚合的对象放在聚合边界内管理，容易导致聚合的边界不清晰，也会增加聚合之间的耦合度。</p></li><li><p>在边界之外使用最终一致性。聚合内数据强一致性，而聚合之间数据最终一致性。在一次事务中，最多只能更改一个聚合的状态。如果一次业务操作涉及多个聚合状态的更改，应采用领域事件的方式异步修改相关的聚合，实现聚合之间的解耦（相关内容我会在领域事件部分详解）。</p></li><li><p>通过应用层实现跨聚合的服务调用。为实现微服务内聚合之间的解耦，以及未来以聚合为单位的微服务组合和拆分，应避免跨聚合的领域服务调用和跨聚合的数据库表关联。</p></li></ul></li><li><p>聚合根的特点</p><ul><li>聚合根是实体，有实体的特点，具有全局唯一标识，有独立的生命周期。一个聚合只有一个聚合根，聚合根在聚合内对实体和值对象采用直接对象引用的方式进行组织和协调，聚合根与聚合根之间通过 ID 关联的方式实现聚合之间的协同。</li></ul></li><li><p>实体的特点</p><ul><li>有 ID 标识，通过 ID 判断相等性，ID 在聚合内唯一即可。状态可变，它依附于聚合根，其生命周期由聚合根管理。实体一般会持久化，但与数据库持久化对象不一定是一对一的关系。实体可以引用聚合内的聚合根、实体和值对象。</li></ul></li><li><p>值对象的特点</p><ul><li>无 ID，不可变，无生命周期，用完即扔。值对象之间通过属性值判断相等性。它的核心本质是值，是一组概念完整的属性组成的集合，用于描述实体的状态和特征。值对象尽量只引用值对象。</li></ul></li><li><p>聚合的特点</p><ul><li>高内聚、低耦合，它是领域模型中最底层的边界，可以作为拆分微服务的最小单位，但我不建议你对微服务过度拆分。但在对性能有极致要求的场景中，聚合可以独立作为一个微服务，以满足版本的高频发布和极致的弹性伸缩能力。一个微服务可以包含多个聚合，聚合之间的边界是微服务内天然的逻辑边界。有了这个逻辑边界，在微服务架构演进时就可以以聚合为单位进行拆分和组合了，微服务的架构演进也就不再是一件难事了。</li></ul><p>​    </p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;DDD领域驱动设计基础篇&quot;&gt;&lt;a href=&quot;#DDD领域驱动设计基础篇&quot; class=&quot;headerlink&quot; title=&quot;DDD领域驱动设计基础篇&quot;&gt;&lt;/a&gt;DDD领域驱动设计基础篇&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;如何拆分微服务？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li
+      
+    
+    </summary>
+    
+      <category term="系统分析" scheme="http://chiqtv.cn/categories/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="领域驱动设计" scheme="http://chiqtv.cn/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>企业中台理解学习笔记</title>
@@ -44,6 +72,31 @@
   </entry>
   
   <entry>
+    <title>Mac下编译RedisDesktopManager</title>
+    <link href="http://chiqtv.cn/2019/08/16/Mac%E4%B8%8B%E7%BC%96%E8%AF%91RedisDesktopManager/"/>
+    <id>http://chiqtv.cn/2019/08/16/Mac下编译RedisDesktopManager/</id>
+    <published>2019-08-16T00:34:05.000Z</published>
+    <updated>2019-09-05T13:24:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mac下编译RedisDesktopManager"><a href="#Mac下编译RedisDesktopManager" class="headerlink" title="Mac下编译RedisDesktopManager"></a>Mac下编译RedisDesktopManager</h1><h4 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure><h4 id="安装qt5、openssl、libssh2"><a href="#安装qt5、openssl、libssh2" class="headerlink" title="安装qt5、openssl、libssh2"></a>安装qt5、openssl、libssh2</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew update &amp;&amp; brew install qt5 openssl libssh2</span><br><span class="line"> $ export PATH=/usr/local/opt/qt5/bin:$PATH</span><br></pre></td></tr></table></figure><h4 id="克隆RDM版本库"><a href="#克隆RDM版本库" class="headerlink" title="克隆RDM版本库"></a>克隆RDM版本库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 克隆指定tag，如当前为2019.3</span><br><span class="line">git clone --recursive https://github.com/uglide/RedisDesktopManager.git --branch 2019.3 rdm-2019.3 &amp;&amp; cd rdm-2019.3</span><br></pre></td></tr></table></figure><h4 id="编译CrashReporter-切换到7ec6f00版本编译"><a href="#编译CrashReporter-切换到7ec6f00版本编译" class="headerlink" title="编译CrashReporter,切换到7ec6f00版本编译"></a>编译CrashReporter,切换到7ec6f00版本编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 3rdparty/crashreporter</span><br><span class="line">git checkout 7ec6f00 &amp;&amp; qmake DESTDIR=./bin &amp;&amp; make -s -j 8</span><br></pre></td></tr></table></figure><h4 id="修改RDM参数"><a href="#修改RDM参数" class="headerlink" title="修改RDM参数"></a>修改RDM参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd ../../src</span><br><span class="line">cp resources/Info.plist.sample resources/Info.plist</span><br><span class="line">### 修改版本号</span><br><span class="line">vi rdm.pro</span><br><span class="line">DEFINES += RDM_VERSION=\\\&quot;2019.3\\\&quot;</span><br><span class="line">### 搜索debug: CONFIG-=app_bundle，将此行注释（行首加#）</span><br></pre></td></tr></table></figure><h4 id="编译RDM"><a href="#编译RDM" class="headerlink" title="编译RDM"></a>编译RDM</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure &amp;&amp; qmake CONFIG-=debug &amp;&amp; make -s -j 8 &amp;&amp; cd ..</span><br></pre></td></tr></table></figure><p>####【可选】拷贝qt动态库到app里</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ./bin/osx/release</span><br><span class="line">macdeployqt rdm.app -qmldir=../../../src/qml</span><br></pre></td></tr></table></figure><h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git error: RPC failed; curl 56 LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 54</span><br><span class="line">//解决办法，换了vpn代理</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Mac下编译RedisDesktopManager&quot;&gt;&lt;a href=&quot;#Mac下编译RedisDesktopManager&quot; class=&quot;headerlink&quot; title=&quot;Mac下编译RedisDesktopManager&quot;&gt;&lt;/a&gt;Mac下编译Redis
+      
+    
+    </summary>
+    
+      <category term="第三方源码库" scheme="http://chiqtv.cn/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81%E5%BA%93/"/>
+    
+    
+      <category term="tools" scheme="http://chiqtv.cn/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
     <title>gpm源码阅读</title>
     <link href="http://chiqtv.cn/2019/08/16/gpm%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     <id>http://chiqtv.cn/2019/08/16/gpm源码阅读/</id>
@@ -69,36 +122,11 @@
   </entry>
   
   <entry>
-    <title>Mac下编译RedisDesktopManager</title>
-    <link href="http://chiqtv.cn/2019/08/16/Mac%E4%B8%8B%E7%BC%96%E8%AF%91RedisDesktopManager/"/>
-    <id>http://chiqtv.cn/2019/08/16/Mac下编译RedisDesktopManager/</id>
-    <published>2019-08-16T00:34:05.000Z</published>
-    <updated>2019-09-05T13:24:52.887Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Mac下编译RedisDesktopManager"><a href="#Mac下编译RedisDesktopManager" class="headerlink" title="Mac下编译RedisDesktopManager"></a>Mac下编译RedisDesktopManager</h1><h4 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure><h4 id="安装qt5、openssl、libssh2"><a href="#安装qt5、openssl、libssh2" class="headerlink" title="安装qt5、openssl、libssh2"></a>安装qt5、openssl、libssh2</h4> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew update &amp;&amp; brew install qt5 openssl libssh2</span><br><span class="line"> $ export PATH=/usr/local/opt/qt5/bin:$PATH</span><br></pre></td></tr></table></figure><h4 id="克隆RDM版本库"><a href="#克隆RDM版本库" class="headerlink" title="克隆RDM版本库"></a>克隆RDM版本库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 克隆指定tag，如当前为2019.3</span><br><span class="line">git clone --recursive https://github.com/uglide/RedisDesktopManager.git --branch 2019.3 rdm-2019.3 &amp;&amp; cd rdm-2019.3</span><br></pre></td></tr></table></figure><h4 id="编译CrashReporter-切换到7ec6f00版本编译"><a href="#编译CrashReporter-切换到7ec6f00版本编译" class="headerlink" title="编译CrashReporter,切换到7ec6f00版本编译"></a>编译CrashReporter,切换到7ec6f00版本编译</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 3rdparty/crashreporter</span><br><span class="line">git checkout 7ec6f00 &amp;&amp; qmake DESTDIR=./bin &amp;&amp; make -s -j 8</span><br></pre></td></tr></table></figure><h4 id="修改RDM参数"><a href="#修改RDM参数" class="headerlink" title="修改RDM参数"></a>修改RDM参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd ../../src</span><br><span class="line">cp resources/Info.plist.sample resources/Info.plist</span><br><span class="line">### 修改版本号</span><br><span class="line">vi rdm.pro</span><br><span class="line">DEFINES += RDM_VERSION=\\\&quot;2019.3\\\&quot;</span><br><span class="line">### 搜索debug: CONFIG-=app_bundle，将此行注释（行首加#）</span><br></pre></td></tr></table></figure><h4 id="编译RDM"><a href="#编译RDM" class="headerlink" title="编译RDM"></a>编译RDM</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure &amp;&amp; qmake CONFIG-=debug &amp;&amp; make -s -j 8 &amp;&amp; cd ..</span><br></pre></td></tr></table></figure><p>####【可选】拷贝qt动态库到app里</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ./bin/osx/release</span><br><span class="line">macdeployqt rdm.app -qmldir=../../../src/qml</span><br></pre></td></tr></table></figure><h4 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Git error: RPC failed; curl 56 LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 54</span><br><span class="line">//解决办法，换了vpn代理</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Mac下编译RedisDesktopManager&quot;&gt;&lt;a href=&quot;#Mac下编译RedisDesktopManager&quot; class=&quot;headerlink&quot; title=&quot;Mac下编译RedisDesktopManager&quot;&gt;&lt;/a&gt;Mac下编译Redis
-      
-    
-    </summary>
-    
-      <category term="第三方源码库" scheme="http://chiqtv.cn/categories/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%BA%90%E7%A0%81%E5%BA%93/"/>
-    
-    
-      <category term="tools" scheme="http://chiqtv.cn/tags/tools/"/>
-    
-  </entry>
-  
-  <entry>
     <title>git代码提交规范</title>
     <link href="http://chiqtv.cn/2019/08/06/%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/"/>
     <id>http://chiqtv.cn/2019/08/06/代码提交规范/</id>
     <published>2019-08-06T00:34:05.000Z</published>
-    <updated>2019-09-05T13:03:54.600Z</updated>
+    <updated>2019-09-05T13:03:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="提交日志规范"><a href="#提交日志规范" class="headerlink" title="提交日志规范"></a>提交日志规范</h1><p>参考agular的代码提交规范， 分成两部分</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;提交简要&gt;</span><br><span class="line"></span><br><span class="line">&lt;详细描述&gt;</span><br></pre></td></tr></table></figure><ul><li>提交简要写成一行</li><li>提交简要和详细描述中间有空行</li><li>原则上一次只提交一个提交简要</li><li>提交简要是下面三个部分组成， 写在一行:</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;修改类型&gt;&lt;修改范围&gt;:&lt;修改内容&gt;</span><br></pre></td></tr></table></figure><ul><li>简要提交的修改类型如下：<ul><li>feat：功能变动（feature）</li><li>fix：修补bug, 建议写bug id以(!bug_id)或者bug的http连接</li><li>docs：文档（documentation）</li><li>style： 格式（不影响代码运行的变动）</li><li>refactor：重构（即不是新增功能，也不是修改bug的代码变动）</li><li>test：测试相关</li><li>chore：构建过程或辅助工具的变动</li></ul></li><li>简要提交的修改范围, 可选， 用小括号()包裹， 中间用英文逗号,分割, 具体写法暂不做规定</li><li>修改内容： 一句话说清楚本次提交的内容</li><li><p>简要提交的末尾， 可以用(#feature_id, #feature_id2)来标识相关的feature</p></li><li><p>详细描述可选， 详细描述可分为多行， 每行用<tab> + * 号加 空格 开始， 其实就是方便支持md语法</tab></p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 具体描述1</span><br><span class="line">* 具体描述2</span><br><span class="line">* 具体描述3</span><br></pre></td></tr></table></figure><ul><li>例外<br>如果代码是merge和revert， 展示不做约定， 使用原来的提交即可， 如果要加描述， 按前面的规范写日志， 和默认revert, merge日志用—————-分割</li><li>例子如下:<br>feat: (通用版,登录)增加通用版的登录接口</li></ul><p>docs: 添加提交规范文档</p><p>test: 去掉部分重复的测试</p><p>fix: !bugId bug简要描述 </p><pre><code>* bug http连接* 相关的影响</code></pre>]]></content>
     
@@ -519,33 +547,6 @@
       <category term="ssl" scheme="http://chiqtv.cn/tags/ssl/"/>
     
       <category term="https" scheme="http://chiqtv.cn/tags/https/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android Facede</title>
-    <link href="http://chiqtv.cn/2016/08/01/Android-Facede/"/>
-    <id>http://chiqtv.cn/2016/08/01/Android-Facede/</id>
-    <published>2016-08-01T00:59:58.000Z</published>
-    <updated>2019-04-09T07:59:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Android外观模式的应用"><a href="#Android外观模式的应用" class="headerlink" title="Android外观模式的应用"></a>Android外观模式的应用</h1><pre><code>这是一个`app`最初的项目结构  </code></pre><p><img src="//chiqtv.cn/2016/08/01/Android-Facede/1.png" alt></p><p>所有的页面都放在<code>activities</code>，自定义<code>view</code>放在<code>widget</code>，网络相关的封装在<code>network</code>，所有工具类放在<code>utils</code>，少数的<code>xxxManager</code>单例藏在某个包下面，因为少没必要过度提炼就这样吧…<br>没什么问题，项目上线！  </p><p>随着项目迭代，越来越多的页面来了，数据库的表也多起来了，工具类更是爆炸性增长，还不排除有些工具类还在<code>activity</code>里面没来得及提炼出来，<code>xxxManager</code>散落一地，<code>callback</code>到处都是…各个包的类都在快速增长</p><p>如果用线来表示相互间的调用，那么整个项目就是一个毛线团，找代码都开始难找了<br>那么这时候就改理一理这个线团了</p><p>之前app没有一个明确的职责分层，横向依赖很严重，小改伤筋动骨</p><h5 id="AppContext与外观模式的应用"><a href="#AppContext与外观模式的应用" class="headerlink" title="AppContext与外观模式的应用"></a>AppContext与外观模式的应用</h5><p>随着业务的发展，<code>app</code>里面的组件，业务线也会逐渐的增多。<br>每个业务线一个<code>module</code>，那么新的问题就来了，<code>module</code>之间的通信问题，横向依赖问题。  </p><p>每个<code>module</code>除了在自己的地盘处理业务，还有可能给其他module提供服务，或者这个<code>module</code>就是一个<code>plugin</code>风格的业务组件。<br>比较粗暴的做法，直接引用<code>module</code>，想调谁就引用谁，那么这和之前单<code>module</code>，类的横向引用又有什么本质上的区别呢？<br>这里我们可以借鉴下<code>Android</code>的<code>Context</code>类的设计，<code>Context</code>就是封装了一大堆<code>Android</code>的子系统（通过<code>getSystemService</code>获取），处理在Android环境下的通信问题。<br>那么我们可以依葫芦画瓢的设计一个我们自己的<code>AppContext</code>，我们的业务<code>module</code>或者组件都是在<code>AppContext</code>环境下，他们之间的通信就通过<code>AppContext</code>，具体业务就交给具体的<code>modul</code>e实现.<br>如果设计多个业务<code>module</code>的协作，那么也应该由<code>AppContext</code>屏蔽协作的细节，这是一个很典型的外观模式的应用。<br>在面向对象编程范式内，很多问题都可以通过引入额外的一层来解决<br><img src="//chiqtv.cn/2016/08/01/Android-Facede/2.png" alt>  </p><p>有些基础组件<code>module</code>或通用性非常高的<code>module</code>，可以下沉到<code>AppContext</code>下面</p><p><code>AppContext</code>的核心职责就是封装好<code>app</code>所用到的子系统（审视下以前代码里面的单例<code>manager</code>，思考一下他是不是能作为<code>app</code>的一个子系统工作）来统一管理服务，无论该服务是基于<code>Android</code>，还是业务<code>module</code>，还是其他第三方组件。当然这里也应该<code>module</code>与<code>app</code>通信，一些app级别的配置也可以在这里处理</p><p>在实际操作中，一定要渐进式的处理，主要是因为：</p><ul><li>互联网时代不能让飞机停下来，做到在天上就给飞机动了手术</li><li>可以逐渐验证自己的方案，不要一开始就置自己于险境</li></ul><blockquote><p>比如目前工程中moduleA直接依赖moduleB调用接口，重构过程中不必直接取消依赖（不要影响目前的业务），在AppContext中添加一个moduleB的service，这个service代理moduleB提供的接口服务，然后moduleA调用接口逐渐的转向AppContext提供的方式，当转得差不多的时候就断掉moduleA与moduleB之间的依赖。</p></blockquote><p>对于有些业务线的<code>module</code>，完全可以把他当做一个app来对待  </p><p><img src="//chiqtv.cn/2016/08/01/Android-Facede/3.png" alt>  </p><h5 id="AppContext只是解决了module之间的通信或者是子系统的管理"><a href="#AppContext只是解决了module之间的通信或者是子系统的管理" class="headerlink" title="AppContext只是解决了module之间的通信或者是子系统的管理"></a>AppContext只是解决了module之间的通信或者是子系统的管理</h5><blockquote><p>由多收缩到一的问题（统一依赖AppContext），只限于单进程，还没有跨进程，跨app，关于跨进程local，remote的问题，另开一贴讲设计思路与实现</p></blockquote><p>一个<code>App</code>除了通信，还有一些工具类，一些的<code>style</code>，<code>theme</code>，<code>resource</code>相关的定义。  </p><p>很多<code>app</code>都会搞一个类似<code>core</code>，<code>common</code>的<code>module</code>，一股脑儿的扔里面，这玩意儿到后面绝对是一锅东北菜，乱炖的感觉。  </p><p>对于<code>module</code>层级下面的<code>util</code>，只能是高度通用的<code>util</code>才放到下面，命名一定要体现其具体功能，千万不要直接<code>utils</code>，<code>StringUtils</code>等很模糊的命名，推荐<code>Logger</code>，<code>DeviceUtil</code>，<code>UrlUtil</code>等一眼就能看出其具体功能的<code>util</code>。  </p><p>对于<code>resource</code>相关的定义，单独一个<code>module</code><br>这些<code>module</code>都会逐渐沉淀下来，以后<code>app</code>按需依赖.<br><img src="//chiqtv.cn/2016/08/01/Android-Facede/4.png" alt><br>黑线一下的就是业务线开发的基础，是不是有点类似<code>android.jar</code>的感觉</p><h4 id="UserCase"><a href="#UserCase" class="headerlink" title="UserCase"></a>UserCase</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">人之所以聪明，是因为人会创造工具并使用</span><br><span class="line"></span><br><span class="line">重构的基础是人员，如何照顾开发的情绪，如何渐进式的进行重构，</span><br><span class="line">如何借助工具进行重构，重构不等于重写，重构不等于业务都给我停下让路</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Android外观模式的应用&quot;&gt;&lt;a href=&quot;#Android外观模式的应用&quot; class=&quot;headerlink&quot; title=&quot;Android外观模式的应用&quot;&gt;&lt;/a&gt;Android外观模式的应用&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;这是一个`app`最初的项目
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="http://chiqtv.cn/categories/Android/"/>
-    
-    
-      <category term="android" scheme="http://chiqtv.cn/tags/android/"/>
-    
-      <category term="设计模式" scheme="http://chiqtv.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
